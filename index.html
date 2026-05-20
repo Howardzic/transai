@@ -18,30 +18,33 @@
       </a>
 
       <ul class="nav-menu">
-        <li>
-          <a href="#">Buy Crypto <span class="arrow">▾</span></a>
-          <div class="nav-dropdown">
-            <a href="#"><div class="dd-title">Credit / Debit Card</div><div class="dd-desc">Buy crypto with card instantly</div></a>
-            <a href="#"><div class="dd-title">Bank Transfer</div><div class="dd-desc">Low fees with bank deposit</div></a>
-            <a href="#"><div class="dd-title">P2P Trading</div><div class="dd-desc">Trade directly with other users</div></a>
-          </div>
+        <!-- DISABLED -->
+        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Buy Crypto</a>
         </li>
-        <li><a href="#">Markets</a></li>
+        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Markets</a>
+        </li>
         <li>
           <a href="#">Trade <span class="arrow">▾</span></a>
           <div class="nav-dropdown">
-            <a href="#"><div class="dd-title">Convert</div><div class="dd-desc">Convert crypto to fiat and vice-versa</div></a>
-            <a href="#"><div class="dd-title">Spot</div><div class="dd-desc">Trade 150+ cryptocurrencies</div></a>
-            <a href="#"><div class="dd-title">Futures</div><div class="dd-desc">Maximize capital with cross-margin, multi-asset collateral</div></a>
-            <a href="dashboard.html"><div class="dd-title" style="color:#f0b429">AI Bots Trading</div><div class="dd-desc">AI-managed trading. Simple to join, easy to exit</div></a>
+            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title">🔒 Convert</div><div class="dd-desc">即將推出</div></a>
+            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title">🔒 Spot</div><div class="dd-desc">即將推出</div></a>
+            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title">🔒 Futures</div><div class="dd-desc">即將推出</div></a>
+            <a href="dashboard.html"><div class="dd-title" style="color:#f0b429">✅ AI Bots Trading</div><div class="dd-desc">AI-managed trading. Simple to join, easy to exit</div></a>
           </div>
         </li>
-        <li><a href="#">Earn</a></li>
-        <li><a href="#">Referral</a></li>
+        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Earn</a>
+        </li>
+        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Referral</a>
+        </li>
       </ul>
 
       <div class="nav-right">
         <div class="nav-search">🔍 Search markets</div>
+        <a href="admin.html" class="nav-link" style="font-size:12px;color:rgba(255,255,255,0.5)">⚙️ Admin</a>
         <a href="#" class="nav-link" id="nav-login-btn">Login</a>
         <a href="#" class="btn-register" id="nav-register-btn">Register</a>
       </div>
@@ -140,26 +143,31 @@
         <p class="section-desc">From simple crypto purchases to sophisticated AI-powered trading bots</p>
       </div>
       <div class="products-grid">
-        <a href="#" class="product-card">
+        <!-- DISABLED CARDS -->
+        <a href="#" class="product-card" onclick="showComingSoon();return false" style="opacity:0.4;filter:grayscale(0.6);cursor:not-allowed;position:relative">
+          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px">即將推出</div>
           <div class="product-icon icon-gold">💳</div>
           <div class="product-name">Buy Crypto</div>
-          <div class="product-desc">Purchase 150+ cryptocurrencies instantly with card or bank transfer</div>
+          <div class="product-desc">功能開發中，敬請期待</div>
         </a>
-        <a href="#" class="product-card">
+        <a href="#" class="product-card" onclick="showComingSoon();return false" style="opacity:0.4;filter:grayscale(0.6);cursor:not-allowed;position:relative">
+          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px">即將推出</div>
           <div class="product-icon icon-navy">📈</div>
           <div class="product-name">Spot Trading</div>
-          <div class="product-desc">Trade spot markets with deep liquidity and competitive fees</div>
+          <div class="product-desc">功能開發中，敬請期待</div>
         </a>
-        <a href="#" class="product-card">
+        <a href="#" class="product-card" onclick="showComingSoon();return false" style="opacity:0.4;filter:grayscale(0.6);cursor:not-allowed;position:relative">
+          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px">即將推出</div>
           <div class="product-icon icon-blue">⚡</div>
           <div class="product-name">Futures</div>
-          <div class="product-desc">Maximize capital with cross-margin, multi-asset collateral and settlement</div>
+          <div class="product-desc">功能開發中，敬請期待</div>
         </a>
+        <!-- ACTIVE CARD -->
         <a href="dashboard.html" class="product-card featured">
           <div class="product-icon icon-gold">🤖</div>
           <div class="product-name">AI Bots Trading</div>
           <div class="product-desc">AI-managed trading. Simple to join, easy to exit. Performance-based fees only</div>
-          <span class="product-tag">⭐ Most Popular</span>
+          <span class="product-tag">✅ 現已開放</span>
         </a>
       </div>
     </div>
@@ -402,6 +410,18 @@
     </div>
   </div>
 
+  <script>
+    function showComingSoon() {
+      const old = document.querySelector('.cs-toast');
+      if (old) old.remove();
+      const t = document.createElement('div');
+      t.className = 'cs-toast';
+      t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#152747;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:5000;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
+      t.textContent = '🔒 此功能即將推出，敬請期待';
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300); }, 2500);
+    }
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>

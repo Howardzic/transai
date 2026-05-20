@@ -1,0 +1,267 @@
+/* =============================================
+   TRANSAI — VIP Page CSS
+   Premium Exclusive Client Experience
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
+
+:root {
+  --navy:     #152747;
+  --navy-dark:#0a1628;
+  --gold:     #f0b429;
+  --gold-2:   #ffd97d;
+  --green:    #03c795;
+  --red:      #f6465d;
+  --bg:       #f0f4fb;
+  --card:     #ffffff;
+  --border:   #e2e8f4;
+  --text:     #1a2744;
+  --text-2:   #5a6880;
+  --text-3:   #9aa5b8;
+  --radius:   8px;
+  --radius-lg:12px;
+  --shadow-lg:0 16px 48px rgba(21,39,71,0.16);
+  --transition:0.2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; }
+
+/* ==============================
+   TOPNAV (Simple)
+   ============================== */
+.vip-nav {
+  background: var(--navy);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  justify-content: space-between;
+}
+
+.vip-nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.vip-logo-icon { width: 28px; height: 28px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 900; color: var(--navy); }
+.vip-logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: #fff; }
+
+.vip-badge-nav { font-size: 10px; font-weight: 700; background: rgba(240,180,41,0.15); color: var(--gold); padding: 2px 8px; border-radius: 50px; border: 1px solid rgba(240,180,41,0.25); }
+
+/* ==============================
+   ERROR PAGE
+   ============================== */
+.error-page {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.error-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 56px 48px;
+  max-width: 440px;
+  box-shadow: var(--shadow-lg);
+}
+
+.error-icon { font-size: 56px; margin-bottom: 16px; }
+.error-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.error-desc { font-size: 14px; color: var(--text-3); line-height: 1.7; margin-bottom: 24px; }
+
+.btn-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 24px;
+  background: var(--navy); color: #fff;
+  border: none; border-radius: var(--radius);
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  transition: var(--transition);
+}
+.btn-back:hover { background: #1e3460; }
+
+/* ==============================
+   VIP MAIN LAYOUT
+   ============================== */
+.vip-main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ==============================
+   VIP HERO BANNER
+   ============================== */
+.vip-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #1e3460 100%);
+  border-radius: 20px;
+  padding: 36px 36px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.vip-hero::before {
+  content: '';
+  position: absolute; top: -60px; right: -40px;
+  width: 250px; height: 250px;
+  border-radius: 50%;
+  background: rgba(240,180,41,0.08);
+  pointer-events: none;
+}
+
+.vip-hero-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.vip-crown-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(240,180,41,0.15);
+  border: 1px solid rgba(240,180,41,0.3);
+  color: var(--gold);
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 12px; font-weight: 700;
+}
+
+.vip-token { font-size: 11px; color: rgba(255,255,255,0.3); font-family: monospace; }
+
+.vip-hero-greeting { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+.vip-hero-name { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.vip-hero-fund { font-size: 14px; color: var(--gold); font-weight: 600; }
+
+.vip-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.vip-hero-stat {}
+.vip-hero-stat-label { font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+.vip-hero-stat-val { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #fff; }
+.vip-hero-stat-val.gold { color: var(--gold); }
+.vip-hero-stat-val.green { color: var(--green); }
+
+/* ==============================
+   STATUS CARD
+   ============================== */
+.vip-section-title { font-size: 13.5px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+
+.vip-status-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 16px;
+}
+
+.vip-status-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+}
+.vip-status-row:last-child { border-bottom: none; padding-bottom: 0; }
+.vip-status-label { color: var(--text-2); }
+.vip-status-val { font-weight: 700; color: var(--text); }
+.vip-status-val.green { color: var(--green); }
+.vip-status-val.gold { color: #c47f00; }
+
+/* ==============================
+   REGISTRATION CTA CARD
+   ============================== */
+.vip-reg-card {
+  background: linear-gradient(135deg, #fff9ed, #fffdf7);
+  border: 1.5px solid rgba(240,180,41,0.3);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.vip-reg-icon { font-size: 40px; margin-bottom: 12px; }
+.vip-reg-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.vip-reg-desc { font-size: 13.5px; color: var(--text-2); line-height: 1.7; margin-bottom: 20px; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+.referral-display {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.referral-label { color: rgba(255,255,255,0.5); }
+.referral-code { font-weight: 700; color: var(--gold); letter-spacing: 1px; font-family: monospace; font-size: 15px; }
+
+.btn-register-vip {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--gold); color: var(--navy);
+  border: none; border-radius: var(--radius-lg);
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  transition: var(--transition);
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 14px rgba(240,180,41,0.3);
+}
+.btn-register-vip:hover { background: #e5a820; transform: translateY(-1px); }
+
+.vip-reg-note { font-size: 11.5px; color: var(--text-3); margin-top: 12px; }
+
+/* ==============================
+   DISCLAIMER
+   ============================== */
+.vip-disclaimer {
+  background: rgba(246,70,93,0.04);
+  border: 1px solid rgba(246,70,93,0.12);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 11.5px;
+  color: var(--text-3);
+  line-height: 1.7;
+  margin-top: 24px;
+}
+
+/* ==============================
+   STRATEGY DETAILS
+   ============================== */
+.vip-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.vip-info-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.vip-info-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-3); margin-bottom: 6px; }
+.vip-info-val { font-size: 15px; font-weight: 700; color: var(--text); }
+.vip-info-val.green { color: var(--green); }
+.vip-info-val.gold { color: #c47f00; }
+
+/* RISK badges */
+.risk-badge { display: inline-block; padding: 2px 8px; border-radius: 50px; font-size: 10.5px; font-weight: 700; }
+.risk-badge.high { background: rgba(246,70,93,0.1); color: var(--red); }
+.risk-badge.medium { background: rgba(245,158,11,0.1); color: #d97706; }
+.risk-badge.low { background: rgba(3,199,149,0.1); color: var(--green); }
+
+@media (max-width: 600px) {
+  .vip-main { padding: 20px 16px 60px; }
+  .vip-hero { padding: 24px 20px; }
+  .vip-hero-stats { grid-template-columns: 1fr 1fr; }
+  .vip-info-grid { grid-template-columns: 1fr; }
+}

@@ -4,8 +4,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Bots Wallet — TRANSAI</title>
-  <meta name="description" content="TRANSAI AI Bots Wallet — Manage your AI trading bots, monitor P&L, transfer funds.">
+  <meta name="description" content="TRANSAI AI Bots Wallet — Choose a fund, monitor P&L, manage your AI investments.">
   <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    /* Fund Cards */
+    .funds-section { margin-bottom: 24px; }
+    .funds-title { font-size: 14px; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+    .funds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    .fund-card {
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg); padding: 22px;
+      transition: var(--transition); cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+    .fund-card:hover { border-color: var(--gold); box-shadow: 0 8px 28px rgba(240,180,41,0.12); transform: translateY(-2px); }
+    .fund-card.full { opacity: 0.7; cursor: not-allowed; }
+    .fund-card.full:hover { transform: none; border-color: var(--border); box-shadow: none; }
+
+    .fund-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .fund-risk-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 50px; font-size: 10.5px; font-weight: 700; }
+    .fund-risk-badge.high { background: rgba(246,70,93,0.1); color: var(--red); border: 1px solid rgba(246,70,93,0.18); }
+    .fund-risk-badge.medium { background: rgba(245,158,11,0.1); color: #d97706; border: 1px solid rgba(245,158,11,0.18); }
+    .fund-risk-badge.low { background: rgba(3,199,149,0.1); color: var(--green); border: 1px solid rgba(3,199,149,0.18); }
+    .fund-full-badge { font-size: 10px; font-weight: 700; color: var(--red); background: rgba(246,70,93,0.07); padding: 3px 8px; border-radius: 50px; }
+
+    .fund-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .fund-return { display: flex; align-items: baseline; gap: 4px; margin-bottom: 14px; }
+    .fund-return-num { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; color: var(--green); }
+    .fund-return-label { font-size: 12px; color: var(--text-3); }
+
+    .fund-progress-wrap { margin-bottom: 14px; }
+    .fund-progress-label { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-3); margin-bottom: 5px; }
+    .fund-progress-bar { height: 5px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+    .fund-progress-fill { height: 100%; border-radius: 3px; transition: width 0.8s ease; }
+    .fund-progress-fill.high { background: var(--red); }
+    .fund-progress-fill.medium { background: #f59e0b; }
+    .fund-progress-fill.low { background: var(--green); }
+
+    .fund-meta { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .fund-meta-row { display: flex; justify-content: space-between; font-size: 12px; }
+    .fund-meta-label { color: var(--text-3); }
+    .fund-meta-val { font-weight: 600; color: var(--text-2); }
+
+    .btn-invest {
+      width: 100%; padding: 10px;
+      background: var(--gold); color: var(--navy);
+      border: none; border-radius: var(--radius);
+      font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-invest:hover { background: var(--gold-hover); }
+    .btn-invest:disabled { background: var(--border); color: var(--text-3); cursor: not-allowed; }
+
+    /* Toggle OFF state */
+    .ai-off-state {
+      background: var(--card); border: 1.5px dashed var(--border);
+      border-radius: var(--radius-lg);
+      padding: 60px 24px;
+      text-align: center; margin-bottom: 24px;
+    }
+    .ai-off-icon { font-size: 48px; margin-bottom: 16px; filter: grayscale(0.5); }
+    .ai-off-title { font-size: 17px; font-weight: 700; color: var(--text-2); margin-bottom: 8px; }
+    .ai-off-desc { font-size: 13.5px; color: var(--text-3); max-width: 400px; margin: 0 auto; line-height: 1.7; }
+
+    /* My Investments section */
+    .investments-section {}
+    .investments-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+
+    /* Investment Modal */
+    .invest-modal-fund { background: var(--bg); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px; }
+    .invest-modal-fund-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .invest-modal-fund-meta { font-size: 12px; color: var(--text-3); }
+
+    .amount-k-input { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .amount-k-num { flex:1; padding: 10px 14px; border: none; outline: none; font-size: 14px; font-family: 'Inter', sans-serif; color: var(--text); }
+    .amount-k-unit { padding: 0 14px; background: var(--bg); color: var(--text-2); font-weight: 700; font-size: 13px; border-left: 1.5px solid var(--border); height: 100%; display: flex; align-items: center; }
+    .amount-k-equiv { font-size: 12px; color: var(--text-3); margin-top: 6px; }
+    .amount-k-equiv span { font-weight: 700; color: var(--text-2); }
+
+    @media (max-width: 860px) { .funds-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .funds-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
 
@@ -17,41 +98,42 @@
     </a>
 
     <ul class="topnav-links">
-      <li>
-        <a href="#">Buy Crypto <span style="font-size:9px;opacity:0.6">▾</span></a>
-        <div class="tn-dropdown">
-          <a href="#">Credit / Debit Card</a>
-          <a href="#">Bank Transfer</a>
-          <a href="#">P2P Trading</a>
-        </div>
+      <!-- DISABLED nav items -->
+      <li class="tn-disabled" title="即將推出">
+        <a href="#" onclick="showDisabledToast();return false" style="opacity:0.4;cursor:not-allowed">
+          Buy Crypto 🔒
+        </a>
       </li>
-      <li><a href="#">Markets</a></li>
+      <li class="tn-disabled" title="即將推出">
+        <a href="#" onclick="showDisabledToast();return false" style="opacity:0.4;cursor:not-allowed">
+          Markets 🔒
+        </a>
+      </li>
       <li>
         <a href="#">Trade <span style="font-size:9px;opacity:0.6">▾</span></a>
         <div class="tn-dropdown">
-          <a href="#">Convert</a>
-          <a href="#">Spot</a>
-          <a href="#">Futures</a>
-          <a href="#" style="color:#f0b429">AI Bots Trading</a>
+          <a href="#" onclick="showDisabledToast();return false" style="opacity:0.4;cursor:not-allowed">🔒 Convert</a>
+          <a href="#" onclick="showDisabledToast();return false" style="opacity:0.4;cursor:not-allowed">🔒 Spot</a>
+          <a href="#" onclick="showDisabledToast();return false" style="opacity:0.4;cursor:not-allowed">🔒 Futures</a>
+          <a href="dashboard.html" style="color:#f0b429;font-weight:700">✅ AI Bots Trading</a>
         </div>
       </li>
-      <li><a href="#">Earn</a></li>
-      <li><a href="#">Referral</a></li>
+      <li class="tn-disabled">
+        <a href="#" onclick="showDisabledToast();return false" style="opacity:0.4;cursor:not-allowed">
+          Earn 🔒
+        </a>
+      </li>
+      <li class="tn-disabled">
+        <a href="#" onclick="showDisabledToast();return false" style="opacity:0.4;cursor:not-allowed">
+          Referral 🔒
+        </a>
+      </li>
     </ul>
 
     <div class="topnav-right">
       <div class="tn-search">🔍 Search markets</div>
-
-      <button class="tn-btn" id="tn-wallets">Wallets <span style="font-size:9px">▾</span></button>
-      <button class="tn-btn" id="tn-order">Order <span style="font-size:9px">▾</span></button>
-
-      <button class="tn-icon">👤</button>
-      <button class="tn-icon">⚙️</button>
-      <button class="tn-icon" id="notif-btn">
-        🔔
-        <span class="notif-badge">3</span>
-      </button>
-      <button class="tn-icon">⬇️</button>
+      <a href="admin.html" class="tn-btn" style="background:rgba(240,180,41,0.1);color:var(--gold);border:1px solid rgba(240,180,41,0.2)">⚙️ Admin</a>
+      <button class="tn-icon" title="通知">🔔<span class="notif-badge">1</span></button>
       <div class="tn-lang">🌐 En</div>
     </div>
   </header>
@@ -61,29 +143,23 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <nav class="sidebar-nav">
-        <a class="sb-item" href="#" data-page="overview" id="sb-overview">
-          <span class="sb-icon">⊞</span>
-          Overview
+        <a class="sb-item" href="#" data-page="overview" style="opacity:0.35;cursor:not-allowed" title="即將推出">
+          <span class="sb-icon">⊞</span> Overview <span style="margin-left:auto;font-size:8px;background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:50px">🔒</span>
         </a>
-        <a class="sb-item" href="#" data-page="spot" id="sb-spot">
-          <span class="sb-icon">💼</span>
-          Spot
+        <a class="sb-item" href="#" style="opacity:0.35;cursor:not-allowed" title="即將推出">
+          <span class="sb-icon">💼</span> Spot <span style="margin-left:auto;font-size:8px;background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:50px">🔒</span>
         </a>
-        <a class="sb-item" href="#" data-page="futures" id="sb-futures">
-          <span class="sb-icon">⚡</span>
-          Futures
+        <a class="sb-item" href="#" style="opacity:0.35;cursor:not-allowed" title="即將推出">
+          <span class="sb-icon">⚡</span> Futures <span style="margin-left:auto;font-size:8px;background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:50px">🔒</span>
         </a>
-        <a class="sb-item" href="#" data-page="earn" id="sb-earn">
-          <span class="sb-icon">💎</span>
-          Earn
+        <a class="sb-item" href="#" style="opacity:0.35;cursor:not-allowed" title="即將推出">
+          <span class="sb-icon">💎</span> Earn <span style="margin-left:auto;font-size:8px;background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:50px">🔒</span>
         </a>
-        <a class="sb-item active" href="#" data-page="ai-bots" id="sb-ai-bots">
-          <span class="sb-icon">🤖</span>
-          AI Bots
+        <a class="sb-item active" href="dashboard.html">
+          <span class="sb-icon">🤖</span> AI Bots
         </a>
-        <a class="sb-item" href="#" data-page="history" id="sb-history">
-          <span class="sb-icon">🕐</span>
-          Transaction<br>History
+        <a class="sb-item" href="#" style="opacity:0.35;cursor:not-allowed" title="即將推出">
+          <span class="sb-icon">🕐</span> History <span style="margin-left:auto;font-size:8px;background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:50px">🔒</span>
         </a>
       </nav>
     </aside>
@@ -91,13 +167,10 @@
     <!-- MAIN CONTENT -->
     <main class="main">
 
-      <!-- PAGE TITLE -->
       <h1 class="page-title">AI Bots Wallet</h1>
 
-      <!-- BALANCE + ACTIONS ROW -->
+      <!-- BALANCE ROW -->
       <div class="balance-row">
-
-        <!-- Balance -->
         <div class="bal-main">
           <div class="bal-label">
             <span class="bal-avail">Available</span>
@@ -106,12 +179,11 @@
             <span class="bal-info" title="Total includes unrealized P&L">ⓘ</span>
           </div>
           <div class="bal-amount">
-            <span class="bal-num" id="live-balance">1,000,000.00</span>
+            <span class="bal-num" id="live-balance">15,320.50</span>
             <span class="bal-currency">USD <span class="bal-caret">▾</span></span>
           </div>
         </div>
 
-        <!-- P&L -->
         <div class="pnl-section">
           <div class="pnl-tabs">
             <button class="pnl-tab active" id="pnl-7d">7-Day</button>
@@ -121,95 +193,111 @@
             <span class="pnl-label">P&L</span>
           </div>
           <div class="pnl-value">
-            + <span id="pnl-amount">999.51</span>
+            + <span id="pnl-amount">320.50</span>
             <span class="pnl-currency">USD</span>
             <span class="pnl-arrow">›</span>
           </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="action-row" style="margin-left:auto">
-          <button class="action-btn" id="btn-join" title="Join AI Bots">
+        <div class="action-row">
+          <button class="action-btn" id="btn-join">
             <div class="action-icon">⬇️</div>
             <span class="action-label">Join AI Bots</span>
           </button>
-          <button class="action-btn" id="btn-exit-all" title="Exit all AI Bots">
-            <div class="action-icon">⬆️</div>
-            <span class="action-label">Exit AI Bots</span>
-          </button>
-          <button class="action-btn active" id="btn-transfer" title="Transfer funds">
+          <button class="action-btn active" id="btn-transfer">
             <div class="action-icon">⇄</div>
             <span class="action-label">Transfer</span>
           </button>
-          <button class="action-btn" id="btn-history" title="Transaction history">
+          <button class="action-btn" id="btn-history">
             <div class="action-icon">🕐</div>
             <span class="action-label">History</span>
           </button>
         </div>
       </div>
 
-      <!-- CONTENT CARD -->
-      <div class="content-card">
-        <div class="card-tabs">
-          <button class="card-tab active" data-tab="active-bots" id="tab-active">Active Bots</button>
-          <button class="card-tab" data-tab="assets" id="tab-assets">Assets</button>
-        </div>
+      <!-- AI TOGGLE STATE (shown/hidden by JS) -->
+      <div id="ai-on-section" style="display:none">
 
-        <!-- Active Bots Tab -->
-        <div id="tab-active-bots">
-          <div class="table-wrap">
-            <table id="bots-table">
-              <thead>
-                <tr>
-                  <th>Active Bots <span class="sort-arrow">⬍</span></th>
-                  <th>Asset <span class="sort-arrow">⬍</span></th>
-                  <th>Bot Margin <span class="sort-arrow">⬍</span></th>
-                  <th>Total P&L <span class="sort-arrow">⬍</span> ⓘ</th>
-                  <th>ROI <span class="sort-arrow">⬍</span></th>
-                  <th>Initial Margin <span class="sort-arrow">⬍</span></th>
-                  <th>Duration <span class="sort-arrow">⬍</span></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="bots-tbody">
-                <!-- Rows injected by JS -->
-              </tbody>
-            </table>
+        <!-- FUND CARDS -->
+        <div class="funds-section">
+          <div class="funds-title">可申請基金 Available Funds</div>
+          <div class="funds-grid" id="funds-grid">
+            <!-- Injected by JS -->
           </div>
         </div>
 
-        <!-- Assets Tab (hidden by default) -->
-        <div id="tab-assets-content" style="display:none">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Asset</th>
-                  <th>Available Balance</th>
-                  <th>In Bot Margin</th>
-                  <th>Total</th>
-                  <th>USD Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="bot-name-cell">
-                      <div class="tf-coin-icon" style="background:#26a17b;width:24px;height:24px">₮</div>
-                      <div>
-                        <div class="bot-name">USDT</div>
-                        <div class="bot-strategy">Tether USD</div>
+        <!-- MY INVESTMENTS -->
+        <div class="investments-section">
+          <div class="investments-header">
+            <div class="funds-title" style="margin-bottom:0">我的投資 My Investments</div>
+          </div>
+          <div class="content-card">
+            <div class="card-tabs">
+              <button class="card-tab active" data-tab="active">持有中</button>
+              <button class="card-tab" data-tab="history">歷史記錄</button>
+            </div>
+            <div class="table-wrap">
+              <table id="invest-table">
+                <thead>
+                  <tr>
+                    <th>基金</th>
+                    <th>投入金額</th>
+                    <th>當前價值</th>
+                    <th>未實現 P&L</th>
+                    <th>年化率</th>
+                    <th>投入日期</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody id="invest-tbody">
+                  <tr>
+                    <td>
+                      <div class="bot-name-cell">
+                        <div class="bot-coin-icon" style="background:rgba(3,199,149,0.12);color:var(--green)">丙</div>
+                        <div>
+                          <div class="bot-name">Stable Fund 丙號</div>
+                          <div class="bot-strategy">低風險 · ETH/USDT 10x</div>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td><div class="num-mono">499,750.00000000</div></td>
-                  <td><div class="num-mono">500,250.00000000</div></td>
-                  <td><div class="num-mono">1,000,000.00000000</div></td>
-                  <td><div class="num-mono">$1,000,000.00</div></td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                    <td><div class="num-mono">$5,000.00</div></td>
+                    <td><div class="num-mono">$5,320.50</div></td>
+                    <td><div class="num-mono pnl-pos">+$320.50</div></td>
+                    <td><span class="roi-badge">+28%</span></td>
+                    <td><div class="num-mono" style="font-size:12px">2024-03-01</div></td>
+                    <td><button class="btn-exit" onclick="showToast('贖回申請功能即將開放')">贖回</button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="bot-name-cell">
+                        <div class="bot-coin-icon" style="background:rgba(246,70,93,0.12);color:var(--red)">甲</div>
+                        <div>
+                          <div class="bot-name">Alpha Fund 甲號</div>
+                          <div class="bot-strategy">高風險 · ETH/USDT 100x</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><div class="num-mono">$10,000.00</div></td>
+                    <td><div class="num-mono">$10,000.00</div></td>
+                    <td><div class="num-mono" style="color:var(--text-3)">$0.00</div></td>
+                    <td><span class="roi-badge">+130%</span></td>
+                    <td><div class="num-mono" style="font-size:12px">2024-04-01</div></td>
+                    <td><button class="btn-exit" onclick="showToast('贖回申請功能即將開放')">贖回</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </div>
+
+      </div>
+
+      <!-- AI OFF STATE -->
+      <div id="ai-off-section">
+        <div class="ai-off-state">
+          <div class="ai-off-icon">🤖</div>
+          <div class="ai-off-title">AI 自動投資功能尚未開放</div>
+          <div class="ai-off-desc">AI 投資功能目前正在最後調試階段，即將正式上線。<br>敬請期待，我們將第一時間通知您！</div>
         </div>
       </div>
 
@@ -217,66 +305,36 @@
   </div>
 
   <!-- ============================================
-       MODAL 1: TRANSFER FUNDS
+       MODAL: INVEST IN FUND
        ============================================ -->
-  <div class="modal-overlay" id="modal-transfer">
+  <div class="modal-overlay" id="modal-invest">
     <div class="modal">
       <div class="modal-head">
-        <div class="modal-title">Transfer Funds</div>
-        <button class="modal-x" data-close="modal-transfer">✕</button>
+        <div class="modal-title">申請投資</div>
+        <button class="modal-x" data-close="modal-invest">✕</button>
       </div>
       <div class="modal-body">
-        <!-- From -->
-        <div class="transfer-field">
-          <div class="tf-label">FROM</div>
-          <div class="tf-select" id="tf-from">
-            <span style="font-weight:700;color:#1a2744">Spot Wallet</span>
-            <span class="tf-select-caret">▾</span>
+        <div class="invest-modal-fund" id="invest-modal-fund-info">
+          <div class="invest-modal-fund-name" id="invest-fund-name">—</div>
+          <div class="invest-modal-fund-meta" id="invest-fund-meta">—</div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <label style="font-size:11.5px;font-weight:600;color:var(--text-2);display:block;margin-bottom:6px">投資金額</label>
+          <div class="amount-k-input">
+            <input type="number" class="amount-k-num" id="invest-amount-k" placeholder="0.1" step="0.1" min="0.1">
+            <div class="amount-k-unit">K&nbsp;&nbsp;USDT</div>
           </div>
+          <div class="amount-k-equiv">= <span id="invest-amount-usd">$0</span> USD &nbsp;|&nbsp; 最小投資：<span id="invest-min-label">0.1K ($100)</span></div>
         </div>
 
-        <!-- Swap arrow -->
-        <div class="transfer-swap">
-          <button class="swap-btn" id="swap-direction" title="Swap direction">⇅</button>
-        </div>
-
-        <!-- To -->
-        <div class="transfer-field">
-          <div class="tf-label">TO</div>
-          <div class="tf-select" id="tf-to">
-            <span style="font-weight:700;color:#1a2744">AI Bots Wallet</span>
-            <span class="tf-select-caret">▾</span>
-          </div>
-        </div>
-
-        <!-- Amount -->
-        <div class="transfer-field">
-          <div class="tf-label">TRANSFER AMOUNT</div>
-          <div class="tf-amount-wrap">
-            <div class="tf-amount-label">
-              <span>Available Balance</span>
-              <span class="tf-balance" id="tf-avail-balance">123,789,123,456.004 USDT</span>
-            </div>
-            <div class="tf-amount-input">
-              <input type="number" class="tf-input" id="tf-amount-input" placeholder="Enter amount">
-              <button class="tf-max" id="tf-max-btn">MAX</button>
-              <div class="tf-sep"></div>
-              <div class="tf-currency">
-                <div class="tf-coin-icon">₮</div>
-                USDT
-                <span style="font-size:9px;color:var(--text-3)">▾</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn-confirm" id="tf-confirm-btn">Confirm</button>
+        <button class="btn-confirm" id="invest-proceed-btn">下一步：風險確認 →</button>
       </div>
     </div>
   </div>
 
   <!-- ============================================
-       MODAL 2: RISK ACKNOWLEDGEMENT (Join)
+       MODAL: RISK ACKNOWLEDGEMENT
        ============================================ -->
   <div class="modal-overlay" id="modal-risk">
     <div class="modal">
@@ -287,66 +345,82 @@
       <div class="modal-body">
         <div class="risk-notice">
           <div class="risk-notice-title">Important Investment Notice (Please Read Before Applying)</div>
-          <p>Before using this service, please carefully review and fully understand the following information before submitting your application.</p>
+          <p>Before using this service, please carefully review and fully understand the following information.</p>
           <div class="dashed"></div>
           <h5>1. Investment Involves Risk</h5>
-          <p>Investments offered through this service are not guaranteed and may result in the loss of principal. Due to market conditions, economic trends, interest rates, exchange rates, and other factors, the value of your investments may fluctuate, and losses may occur.</p>
+          <p>Investments are not guaranteed and may result in the loss of principal. Market conditions may cause significant value fluctuations.</p>
           <div class="dashed"></div>
           <h5>2. AI Does Not Guarantee Profit</h5>
-          <p>While our AI system uses advanced algorithms, no trading system can guarantee profits. Historical performance is not indicative of future results.</p>
+          <p>While our AI system uses advanced algorithms, no trading system can guarantee profits. Historical performance does not guarantee future results.</p>
           <div class="dashed"></div>
           <h5>3. Only Invest What You Can Afford to Lose</h5>
-          <p>Please only invest funds that you can afford to lose entirely. Do not use borrowed money or funds needed for essential living expenses.</p>
+          <p>Please only invest funds that you can afford to lose. All transactions go through Binance futures contracts.</p>
         </div>
-
-        <label class="risk-agree" id="risk-agree-label">
+        <label class="risk-agree">
           <input type="checkbox" class="risk-checkbox" id="risk-checkbox">
           <span class="risk-agree-text">I have read, understood, and agree to the above and apply for this service.</span>
         </label>
-
-        <button class="btn-confirm" id="risk-confirm-btn" disabled>Confirm</button>
+        <button class="btn-confirm" id="risk-confirm-btn" disabled>Confirm Investment →</button>
       </div>
     </div>
   </div>
 
   <!-- ============================================
-       MODAL 3: EXIT BOT CONFIRMATION
+       MODAL: TRANSFER FUNDS
        ============================================ -->
-  <div class="modal-overlay" id="modal-exit">
+  <div class="modal-overlay" id="modal-transfer">
     <div class="modal">
       <div class="modal-head">
-        <div class="modal-title">Exit Bot Position</div>
-        <button class="modal-x" data-close="modal-exit">✕</button>
+        <div class="modal-title">Transfer Funds</div>
+        <button class="modal-x" data-close="modal-transfer">✕</button>
       </div>
       <div class="modal-body">
-        <div class="exit-info">
-          <div class="exit-bot-name" id="exit-bot-name">BTC-PERP · Futures Grid</div>
-          <p>Are you sure you want to exit this bot? All open positions will be closed at market price. Current P&L will be settled to your AI Bots Wallet.</p>
+        <div class="transfer-field">
+          <div class="tf-label">FROM</div>
+          <div class="tf-select"><span style="font-weight:700;color:var(--text)">Spot Wallet</span><span class="tf-select-caret">▾</span></div>
         </div>
-
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;font-size:13px;color:var(--text-2)">
-          <div style="display:flex;justify-content:space-between">
-            <span>Current Asset Value</span>
-            <span style="font-weight:700;color:var(--text)" id="exit-asset">604.25000000 USDT</span>
-          </div>
-          <div style="display:flex;justify-content:space-between">
-            <span>Unrealized P&L</span>
-            <span style="font-weight:700;color:var(--green)" id="exit-pnl">+104.25000000 USDT</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:10px">
-            <span>Estimated Settlement</span>
-            <span style="font-weight:700;color:var(--text)" id="exit-settlement">~604.25000000 USDT</span>
+        <div class="transfer-swap"><button class="swap-btn" id="swap-direction">⇅</button></div>
+        <div class="transfer-field">
+          <div class="tf-label">TO</div>
+          <div class="tf-select"><span style="font-weight:700;color:var(--text)">AI Bots Wallet</span><span class="tf-select-caret">▾</span></div>
+        </div>
+        <div class="transfer-field">
+          <div class="tf-label">TRANSFER AMOUNT</div>
+          <div class="tf-amount-wrap">
+            <div class="tf-amount-label">
+              <span>Available Balance</span>
+              <span class="tf-balance">123,789,123.004 USDT</span>
+            </div>
+            <div class="tf-amount-input">
+              <input type="number" class="tf-input" id="tf-amount-input" placeholder="Enter amount">
+              <button class="tf-max" id="tf-max-btn">MAX</button>
+              <div class="tf-sep"></div>
+              <div class="tf-currency"><div class="tf-coin-icon">₮</div>USDT<span style="font-size:9px;color:var(--text-3)">▾</span></div>
+            </div>
           </div>
         </div>
-
-        <div style="display:flex;gap:10px">
-          <button class="btn-confirm" style="background:var(--bg);color:var(--text-2);flex:1" id="exit-cancel-btn">Cancel</button>
-          <button class="btn-confirm-danger" style="flex:1" id="exit-confirm-btn">Confirm Exit</button>
-        </div>
+        <button class="btn-confirm" id="tf-confirm-btn">Confirm</button>
       </div>
     </div>
   </div>
 
+  <script>
+    function showDisabledToast() {
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#152747;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:5000;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
+      t.textContent = '🔒 此功能即將推出，敬請期待';
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300); }, 2500);
+    }
+    function showToast(msg) {
+      const t = document.createElement('div');
+      t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#152747;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;z-index:5000;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300); }, 2500);
+    }
+  </script>
   <script src="js/dashboard.js"></script>
 </body>
 </html>

@@ -18,35 +18,34 @@
       </a>
 
       <ul class="nav-menu">
-        <!-- DISABLED -->
-        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
-          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Buy Crypto</a>
+        <li style="opacity:0.45;cursor:not-allowed" data-i18n-title="coming_soon">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed" data-i18n="nav_buy_crypto">🔒 Buy Crypto</a>
         </li>
-        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
-          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Markets</a>
+        <li style="opacity:0.45;cursor:not-allowed" data-i18n-title="coming_soon">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed" data-i18n="nav_markets">🔒 Markets</a>
         </li>
         <li>
-          <a href="#">Trade <span class="arrow">▾</span></a>
+          <a href="#"><span data-i18n="nav_trade">Trade</span> <span class="arrow">▾</span></a>
           <div class="nav-dropdown">
-            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title">🔒 Convert</div><div class="dd-desc">即將推出</div></a>
-            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title">🔒 Spot</div><div class="dd-desc">即將推出</div></a>
-            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title">🔒 Futures</div><div class="dd-desc">即將推出</div></a>
-            <a href="dashboard.html"><div class="dd-title" style="color:#f0b429">✅ AI Bots Trading</div><div class="dd-desc">AI-managed trading. Simple to join, easy to exit</div></a>
+            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title" data-i18n="nav_convert">🔒 Convert</div><div class="dd-desc" data-i18n="coming_soon">即將推出</div></a>
+            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title" data-i18n="nav_spot">🔒 Spot</div><div class="dd-desc" data-i18n="coming_soon">即將推出</div></a>
+            <a href="#" onclick="showComingSoon();return false" style="opacity:0.45;cursor:not-allowed"><div class="dd-title" data-i18n="nav_futures">🔒 Futures</div><div class="dd-desc" data-i18n="coming_soon">即將推出</div></a>
+            <a href="dashboard.html"><div class="dd-title" style="color:#f0b429" data-i18n="nav_ai_bots">✅ AI Bots Trading</div><div class="dd-desc" data-i18n="nav_ai_bots_desc">AI-managed trading. Simple to join, easy to exit</div></a>
           </div>
         </li>
-        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
-          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Earn</a>
+        <li style="opacity:0.45;cursor:not-allowed" data-i18n-title="coming_soon">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed" data-i18n="nav_earn">🔒 Earn</a>
         </li>
-        <li style="opacity:0.45;cursor:not-allowed" title="即將推出">
-          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed">🔒 Referral</a>
+        <li style="opacity:0.45;cursor:not-allowed" data-i18n-title="coming_soon">
+          <a href="#" onclick="showComingSoon();return false" style="cursor:not-allowed" data-i18n="nav_referral">🔒 Referral</a>
         </li>
       </ul>
 
       <div class="nav-right">
-        <div class="nav-search">🔍 Search markets</div>
-        <a href="admin.html" class="nav-link" style="font-size:12px;color:rgba(255,255,255,0.5)">⚙️ Admin</a>
-        <a href="#" class="nav-link" id="nav-login-btn">Login</a>
-        <a href="#" class="btn-register" id="nav-register-btn">Register</a>
+        <div class="nav-search" data-i18n="nav_search">🔍 Search markets</div>
+        <a href="admin.html" class="nav-link" style="font-size:12px;color:rgba(255,255,255,0.5)" data-i18n="nav_admin">⚙️ Admin</a>
+        <a href="#" class="nav-link" id="nav-login-btn" data-i18n="nav_login">Login</a>
+        <a href="#" class="btn-register" id="nav-register-btn" data-i18n="nav_register">Register</a>
       </div>
     </div>
   </nav>
@@ -59,23 +58,23 @@
         <div class="hero-left">
           <div class="hero-badge">
             <span class="badge-dot"></span>
-            AI-Managed Trading · Round A Open
+            <span data-i18n="hero_badge">AI-Managed Trading · Round A Open</span>
           </div>
           <h1 class="hero-title">
-            Buy And Earn From<br>
-            <span class="highlight">AI Bots Trading</span>
+            <span data-i18n="hero_title_1">Buy And Earn From</span><br>
+            <span class="highlight" data-i18n="hero_title_highlight">AI Bots Trading</span>
           </h1>
-          <p class="hero-subtitle">
+          <p class="hero-subtitle" data-i18n="hero_subtitle">
             Choose from 150+ cryptocurrencies. Our AI engine monitors the market 24/7 and executes the optimal trading strategy automatically. Simple to join, easy to exit.
           </p>
           <div class="hero-form">
-            <input type="email" class="hero-input" id="hero-email" placeholder="Enter your email address">
-            <button class="btn-get-started" id="hero-start-btn">Get Started</button>
+            <input type="email" class="hero-input" id="hero-email" data-i18n-ph="hero_email_ph" placeholder="Enter your email address">
+            <button class="btn-get-started" id="hero-start-btn" data-i18n="hero_cta">Get Started</button>
           </div>
           <div class="hero-trust">
-            <div class="trust-item"><span class="trust-check">✓</span> No trading experience required</div>
-            <div class="trust-item"><span class="trust-check">✓</span> Exit anytime</div>
-            <div class="trust-item"><span class="trust-check">✓</span> Transparent fees</div>
+            <div class="trust-item"><span class="trust-check">✓</span> <span data-i18n="trust_1">No trading experience required</span></div>
+            <div class="trust-item"><span class="trust-check">✓</span> <span data-i18n="trust_2">Exit anytime</span></div>
+            <div class="trust-item"><span class="trust-check">✓</span> <span data-i18n="trust_3">Transparent fees</span></div>
           </div>
         </div>
 
@@ -138,36 +137,36 @@
   <section class="products" id="products">
     <div class="container">
       <div class="section-head">
-        <div class="section-eyebrow">Our Products</div>
-        <h2 class="section-title">Everything You Need to Trade & Earn</h2>
-        <p class="section-desc">From simple crypto purchases to sophisticated AI-powered trading bots</p>
+        <div class="section-eyebrow" data-i18n="products_eyebrow">Our Products</div>
+        <h2 class="section-title" data-i18n="products_title">Everything You Need to Trade & Earn</h2>
+        <p class="section-desc" data-i18n="products_desc">From simple crypto purchases to sophisticated AI-powered trading bots</p>
       </div>
       <div class="products-grid">
         <!-- DISABLED CARDS -->
         <a href="#" class="product-card" onclick="showComingSoon();return false" style="opacity:0.4;filter:grayscale(0.6);cursor:not-allowed;position:relative">
-          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px">即將推出</div>
+          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px" data-i18n="coming_soon">即將推出</div>
           <div class="product-icon icon-gold">💳</div>
-          <div class="product-name">Buy Crypto</div>
-          <div class="product-desc">功能開發中，敬請期待</div>
+          <div class="product-name" data-i18n="product_buy_crypto">Buy Crypto</div>
+          <div class="product-desc" data-i18n="product_buy_crypto_desc">功能開發中，敬請期待</div>
         </a>
         <a href="#" class="product-card" onclick="showComingSoon();return false" style="opacity:0.4;filter:grayscale(0.6);cursor:not-allowed;position:relative">
-          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px">即將推出</div>
+          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px" data-i18n="coming_soon">即將推出</div>
           <div class="product-icon icon-navy">📈</div>
-          <div class="product-name">Spot Trading</div>
-          <div class="product-desc">功能開發中，敬請期待</div>
+          <div class="product-name" data-i18n="product_spot">Spot Trading</div>
+          <div class="product-desc" data-i18n="product_spot_desc">功能開發中，敬請期待</div>
         </a>
         <a href="#" class="product-card" onclick="showComingSoon();return false" style="opacity:0.4;filter:grayscale(0.6);cursor:not-allowed;position:relative">
-          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px">即將推出</div>
+          <div style="position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;background:#e2e8f4;color:#9aa5b8;padding:2px 8px;border-radius:50px" data-i18n="coming_soon">即將推出</div>
           <div class="product-icon icon-blue">⚡</div>
-          <div class="product-name">Futures</div>
-          <div class="product-desc">功能開發中，敬請期待</div>
+          <div class="product-name" data-i18n="product_futures">Futures</div>
+          <div class="product-desc" data-i18n="product_futures_desc">功能開發中，敬請期待</div>
         </a>
         <!-- ACTIVE CARD -->
         <a href="dashboard.html" class="product-card featured">
           <div class="product-icon icon-gold">🤖</div>
-          <div class="product-name">AI Bots Trading</div>
-          <div class="product-desc">AI-managed trading. Simple to join, easy to exit. Performance-based fees only</div>
-          <span class="product-tag">✅ 現已開放</span>
+          <div class="product-name" data-i18n="product_ai_bots">AI Bots Trading</div>
+          <div class="product-desc" data-i18n="product_ai_bots_desc">AI-managed trading. Simple to join, easy to exit. Performance-based fees only</div>
+          <span class="product-tag" data-i18n="product_ai_now_open">✅ 現已開放</span>
         </a>
       </div>
     </div>
@@ -179,38 +178,41 @@
       <div class="ai-grid">
         <!-- Left: Features -->
         <div>
-          <div class="section-eyebrow">AI Bots Trading</div>
-          <h2 class="section-title" style="text-align:left">Intelligent Automation,<br>Consistent Returns</h2>
-          <p style="color:var(--text-2); font-size:14.5px; line-height:1.75; margin-top:12px; max-width:420px">
+          <div class="section-eyebrow" data-i18n="ai_eyebrow">AI Bots Trading</div>
+          <h2 class="section-title" style="text-align:left">
+            <span data-i18n="ai_title_1">Intelligent Automation,</span><br>
+            <span data-i18n="ai_title_2">Consistent Returns</span>
+          </h2>
+          <p style="color:var(--text-2); font-size:14.5px; line-height:1.75; margin-top:12px; max-width:420px" data-i18n="ai_desc">
             Our proprietary AI engine analyzes thousands of market signals every second, executing trades with precision and discipline that human traders cannot match.
           </p>
           <div class="ai-features">
             <div class="ai-feature">
               <div class="ai-feat-icon">🧠</div>
               <div class="ai-feat-text">
-                <h4>Deep Learning Engine</h4>
-                <p>Processes 100K+ data points per second across technical, on-chain, and sentiment signals</p>
+                <h4 data-i18n="feat_deep_title">Deep Learning Engine</h4>
+                <p data-i18n="feat_deep_desc">Processes 100K+ data points per second across technical, on-chain, and sentiment signals</p>
               </div>
             </div>
             <div class="ai-feature">
               <div class="ai-feat-icon">🛡️</div>
               <div class="ai-feat-text">
-                <h4>Smart Risk Control</h4>
-                <p>Multi-layer circuit breakers automatically reduce exposure during extreme volatility</p>
+                <h4 data-i18n="feat_risk_title">Smart Risk Control</h4>
+                <p data-i18n="feat_risk_desc">Multi-layer circuit breakers automatically reduce exposure during extreme volatility</p>
               </div>
             </div>
             <div class="ai-feature">
               <div class="ai-feat-icon">🔍</div>
               <div class="ai-feat-text">
-                <h4>Full Transparency</h4>
-                <p>Real-time dashboard shows every trade, P&L, and bot status. You always stay in control</p>
+                <h4 data-i18n="feat_trans_title">Full Transparency</h4>
+                <p data-i18n="feat_trans_desc">Real-time dashboard shows every trade, P&L, and bot status. You always stay in control</p>
               </div>
             </div>
             <div class="ai-feature">
               <div class="ai-feat-icon">🚪</div>
               <div class="ai-feat-text">
-                <h4>Exit Anytime</h4>
-                <p>No lock-in periods. Exit your bot position at any time with a single click</p>
+                <h4 data-i18n="feat_exit_title">Exit Anytime</h4>
+                <p data-i18n="feat_exit_desc">No lock-in periods. Exit your bot position at any time with a single click</p>
               </div>
             </div>
           </div>
@@ -279,19 +281,19 @@
       <div class="stats-grid">
         <div class="stats-item">
           <div class="stats-val" id="stat-aum">$284M+</div>
-          <div class="stats-label">Assets Under Management</div>
+          <div class="stats-label" data-i18n="stat_aum_label">Assets Under Management</div>
         </div>
         <div class="stats-item">
           <div class="stats-val" id="stat-return">+84.2%</div>
-          <div class="stats-label">YTD Average Return</div>
+          <div class="stats-label" data-i18n="stat_return_label">YTD Average Return</div>
         </div>
         <div class="stats-item">
           <div class="stats-val" id="stat-users">2,847</div>
-          <div class="stats-label">Active Investors</div>
+          <div class="stats-label" data-i18n="stat_users_label">Active Investors</div>
         </div>
         <div class="stats-item">
           <div class="stats-val" id="stat-win">91.3%</div>
-          <div class="stats-label">Win Rate</div>
+          <div class="stats-label" data-i18n="stat_win_label">Win Rate</div>
         </div>
       </div>
     </div>
@@ -301,28 +303,28 @@
   <section class="hiw" id="how-it-works">
     <div class="container">
       <div class="section-head">
-        <div class="section-eyebrow">How It Works</div>
-        <h2 class="section-title">Start Earning in 3 Simple Steps</h2>
-        <p class="section-desc">No trading experience required. From registration to profit in minutes</p>
+        <div class="section-eyebrow" data-i18n="hiw_eyebrow">How It Works</div>
+        <h2 class="section-title" data-i18n="hiw_title">Start Earning in 3 Simple Steps</h2>
+        <p class="section-desc" data-i18n="hiw_desc">No trading experience required. From registration to profit in minutes</p>
       </div>
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-emoji">📋</div>
-          <h3 class="step-title">Register & Verify</h3>
-          <p class="step-desc">Create your account, complete KYC verification, and choose your investment plan. Minimum entry from $10,000 USDT.</p>
+          <h3 class="step-title" data-i18n="step1_title">Register & Verify</h3>
+          <p class="step-desc" data-i18n="step1_desc">Create your account, complete KYC verification, and choose your investment plan. Minimum entry from $10,000 USDT.</p>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-emoji">🤖</div>
-          <h3 class="step-title">Transfer Funds to AI Bot</h3>
-          <p class="step-desc">Transfer funds from your Spot Wallet to the AI Bots Wallet. Our AI engine starts trading immediately, 24/7.</p>
+          <h3 class="step-title" data-i18n="step2_title">Transfer Funds to AI Bot</h3>
+          <p class="step-desc" data-i18n="step2_desc">Transfer funds from your Spot Wallet to the AI Bots Wallet. Our AI engine starts trading immediately, 24/7.</p>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-emoji">💰</div>
-          <h3 class="step-title">Monitor & Earn</h3>
-          <p class="step-desc">Watch your portfolio grow in real-time. Exit anytime or compound your returns automatically each month.</p>
+          <h3 class="step-title" data-i18n="step3_title">Monitor & Earn</h3>
+          <p class="step-desc" data-i18n="step3_desc">Watch your portfolio grow in real-time. Exit anytime or compound your returns automatically each month.</p>
         </div>
       </div>
     </div>
@@ -331,13 +333,13 @@
   <!-- CTA -->
   <section class="cta" id="get-started">
     <div class="container">
-      <h2>Start Your AI Trading Journey Today</h2>
-      <p>Join 2,847+ investors already earning with TRANSAI's intelligent trading bots</p>
+      <h2 data-i18n="cta_title">Start Your AI Trading Journey Today</h2>
+      <p data-i18n="cta_desc">Join 2,847+ investors already earning with TRANSAI's intelligent trading bots</p>
       <div class="cta-form">
-        <input type="email" class="cta-input" id="cta-email" placeholder="Enter your email address">
-        <button class="btn-cta" id="cta-btn">Get Started Free</button>
+        <input type="email" class="cta-input" id="cta-email" data-i18n-ph="cta_email_ph" placeholder="Enter your email address">
+        <button class="btn-cta" id="cta-btn" data-i18n="cta_btn">Get Started Free</button>
       </div>
-      <p class="cta-note">⚠️ Investment involves risk. Past performance does not guarantee future results.</p>
+      <p class="cta-note" data-i18n="cta_risk">⚠️ Investment involves risk. Past performance does not guarantee future results.</p>
     </div>
   </section>
 
@@ -350,39 +352,39 @@
             <div class="logo-icon">T</div>
             <span class="logo-text">TRANSAI</span>
           </a>
-          <p class="footer-brand-desc">AI-powered trading platform built by quantitative traders and machine learning engineers for global investors.</p>
+          <p class="footer-brand-desc" data-i18n="footer_desc">AI-powered trading platform built by quantitative traders and machine learning engineers for global investors.</p>
         </div>
         <div class="footer-col">
-          <h4>Products</h4>
+          <h4 data-i18n="footer_products">Products</h4>
           <ul>
-            <li><a href="#">Buy Crypto</a></li>
-            <li><a href="#">Spot Trading</a></li>
-            <li><a href="#">Futures</a></li>
-            <li><a href="dashboard.html">AI Bots</a></li>
+            <li><a href="#" data-i18n="product_buy_crypto">Buy Crypto</a></li>
+            <li><a href="#" data-i18n="product_spot">Spot Trading</a></li>
+            <li><a href="#" data-i18n="product_futures">Futures</a></li>
+            <li><a href="dashboard.html" data-i18n="product_ai_bots">AI Bots</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4 data-i18n="footer_company">Company</h4>
           <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Careers</a></li>
+            <li><a href="#" data-i18n="footer_about">About Us</a></li>
+            <li><a href="#" data-i18n="footer_team">Team</a></li>
+            <li><a href="#" data-i18n="footer_blog">Blog</a></li>
+            <li><a href="#" data-i18n="footer_careers">Careers</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Legal</h4>
+          <h4 data-i18n="footer_legal">Legal</h4>
           <ul>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Risk Disclosure</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="#" data-i18n="footer_terms">Terms of Service</a></li>
+            <li><a href="#" data-i18n="footer_privacy">Privacy Policy</a></li>
+            <li><a href="#" data-i18n="footer_risk">Risk Disclosure</a></li>
+            <li><a href="#" data-i18n="footer_contact">Contact Us</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 TRANSAI. All rights reserved.</span>
-        <span>AI-Managed · Performance-Based · Transparent</span>
+        <span data-i18n="footer_bottom_1">© 2025 TRANSAI. All rights reserved.</span>
+        <span data-i18n="footer_bottom_2">AI-Managed · Performance-Based · Transparent</span>
       </div>
     </div>
   </footer>
@@ -391,22 +393,22 @@
   <div class="modal-overlay" id="register-modal">
     <div class="modal">
       <button class="modal-close" id="modal-close-btn">✕</button>
-      <h3>Create Your Account</h3>
-      <p class="modal-sub">Join TRANSAI and start earning with AI bots today</p>
+      <h3 data-i18n="modal_register_title">Create Your Account</h3>
+      <p class="modal-sub" data-i18n="modal_register_sub">Join TRANSAI and start earning with AI bots today</p>
       <div class="form-field">
-        <label class="field-label" for="reg-email">Email Address</label>
-        <input type="email" id="reg-email" class="field-input" placeholder="you@example.com">
+        <label class="field-label" for="reg-email" data-i18n="modal_email_label">Email Address</label>
+        <input type="email" id="reg-email" class="field-input" data-i18n-ph="modal_email_ph" placeholder="you@example.com">
       </div>
       <div class="form-field">
-        <label class="field-label" for="reg-password">Password</label>
-        <input type="password" id="reg-password" class="field-input" placeholder="Create a strong password">
+        <label class="field-label" for="reg-password" data-i18n="modal_password_label">Password</label>
+        <input type="password" id="reg-password" class="field-input" data-i18n-ph="modal_password_ph" placeholder="Create a strong password">
       </div>
       <div class="form-field">
-        <label class="field-label" for="reg-referral">Referral Code (optional)</label>
-        <input type="text" id="reg-referral" class="field-input" placeholder="Enter referral code">
+        <label class="field-label" for="reg-referral" data-i18n="modal_referral_label">Referral Code (optional)</label>
+        <input type="text" id="reg-referral" class="field-input" data-i18n-ph="modal_referral_ph" placeholder="Enter referral code">
       </div>
-      <button class="btn-modal" id="reg-submit-btn">Create Account →</button>
-      <p class="modal-footer-text">Already have an account? <a href="#">Sign In</a></p>
+      <button class="btn-modal" id="reg-submit-btn" data-i18n="modal_create_account">Create Account →</button>
+      <p class="modal-footer-text" data-i18n="modal_signin">Already have an account? <a href="#">Sign In</a></p>
     </div>
   </div>
 
@@ -414,14 +416,15 @@
     function showComingSoon() {
       const old = document.querySelector('.cs-toast');
       if (old) old.remove();
-      const t = document.createElement('div');
-      t.className = 'cs-toast';
-      t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#152747;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:5000;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
-      t.textContent = '🔒 此功能即將推出，敬請期待';
-      document.body.appendChild(t);
-      setTimeout(() => { t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300); }, 2500);
+      const el = document.createElement('div');
+      el.className = 'cs-toast';
+      el.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#152747;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:5000;box-shadow:0 8px 32px rgba(0,0,0,0.2)';
+      el.textContent = typeof _t === 'function' ? _t('coming_soon_toast') : '🔒 此功能即將推出，敬請期待';
+      document.body.appendChild(el);
+      setTimeout(() => { el.style.opacity='0';el.style.transition='opacity 0.3s';setTimeout(()=>el.remove(),300); }, 2500);
     }
   </script>
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

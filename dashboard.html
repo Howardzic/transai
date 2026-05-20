@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRANSAI — 投資者管理後台</title>
+  <meta name="description" content="TRANSAI 投資者管理後台 — 管理投資者資料、查看交易績效、追蹤資產配置。">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-glow"></div>
+
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">T</div>
+      <span class="sidebar-logo-text">TRANSAI</span>
+      <span class="sidebar-logo-badge">ADMIN</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">主要功能</div>
+
+      <a class="nav-item active" data-page="overview" id="nav-overview" href="#">
+        <span class="nav-icon">📊</span>
+        總覽儀表板
+      </a>
+      <a class="nav-item" data-page="investors" id="nav-investors" href="#">
+        <span class="nav-icon">👥</span>
+        投資者管理
+        <span class="nav-badge">12</span>
+      </a>
+      <a class="nav-item" data-page="trades" id="nav-trades" href="#">
+        <span class="nav-icon">⚡</span>
+        交易記錄
+      </a>
+      <a class="nav-item" data-page="reports" id="nav-reports" href="#">
+        <span class="nav-icon">📈</span>
+        績效報告
+      </a>
+
+      <div class="nav-section-title" style="margin-top:8px">管理</div>
+
+      <a class="nav-item" data-page="applications" id="nav-applications" href="#">
+        <span class="nav-icon">📋</span>
+        申請審核
+        <span class="nav-badge">3</span>
+      </a>
+      <a class="nav-item" data-page="settings" id="nav-settings" href="#">
+        <span class="nav-icon">⚙️</span>
+        系統設定
+      </a>
+      <a class="nav-item" href="index.html">
+        <span class="nav-icon">🌐</span>
+        前台頁面
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">👤</div>
+        <div class="user-info">
+          <div class="name">Admin</div>
+          <div class="role">超級管理員</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-wrapper">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-title" id="page-title">總覽儀表板</div>
+
+      <div class="topbar-search">
+        <span>🔍</span>
+        <input type="text" id="global-search" placeholder="搜尋投資者、交易...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="date-badge" id="current-date"></div>
+        <div class="icon-btn" title="通知">
+          🔔
+          <span class="notif-dot"></span>
+        </div>
+        <div class="icon-btn" title="設定">⚙️</div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main class="page-content">
+
+      <!-- ================================
+           PAGE: OVERVIEW
+           ================================ -->
+      <div class="page active" id="page-overview">
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card gold">
+            <div class="kpi-header">
+              <span class="kpi-label">總管理資產 (AUM)</span>
+              <div class="kpi-icon gold">💰</div>
+            </div>
+            <div class="kpi-value gold" id="kpi-aum">$284.7M</div>
+            <div class="kpi-change up">▲ +$12.3M 本月</div>
+          </div>
+          <div class="kpi-card cyan">
+            <div class="kpi-header">
+              <span class="kpi-label">本月新增投資者</span>
+              <div class="kpi-icon cyan">👥</div>
+            </div>
+            <div class="kpi-value cyan" id="kpi-new-investors">+47</div>
+            <div class="kpi-change up">▲ +23% vs 上月</div>
+          </div>
+          <div class="kpi-card green">
+            <div class="kpi-header">
+              <span class="kpi-label">本月平均報酬率</span>
+              <div class="kpi-icon green">📈</div>
+            </div>
+            <div class="kpi-value green" id="kpi-return">+8.4%</div>
+            <div class="kpi-change up">▲ 超越基準 +5.2%</div>
+          </div>
+          <div class="kpi-card red">
+            <div class="kpi-header">
+              <span class="kpi-label">待結算收益</span>
+              <div class="kpi-icon red">⏳</div>
+            </div>
+            <div class="kpi-value orange" id="kpi-pending">$2.84M</div>
+            <div class="kpi-change" style="color:var(--orange)">⏳ 月底結算 11 天後</div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+          <div class="card">
+            <div class="card-head">
+              <h3>AUM 趨勢 (近 12 個月)</h3>
+              <span class="card-badge green">▲ +84.2% YTD</span>
+            </div>
+            <canvas id="overview-chart"></canvas>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>資產配置</h3>
+              <span class="card-badge gold">即時</span>
+            </div>
+            <canvas id="allocation-chart"></canvas>
+            <div class="allocation-legend" id="alloc-legend"></div>
+          </div>
+        </div>
+
+        <!-- Recent Trades -->
+        <div class="trades-grid">
+          <div class="card">
+            <div class="card-head">
+              <h3>最近交易</h3>
+              <a class="filter-btn" data-page="trades" href="#" style="text-decoration:none">查看全部 →</a>
+            </div>
+            <div id="recent-trades-list"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>頂尖投資者</h3>
+              <span class="card-badge gold">本月報酬</span>
+            </div>
+            <div id="top-investors-list"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================================
+           PAGE: INVESTORS
+           ================================ -->
+      <div class="page" id="page-investors">
+        <div class="card">
+          <div class="table-controls">
+            <div class="table-search">
+              <span>🔍</span>
+              <input type="text" id="investor-search" placeholder="搜尋姓名、Email...">
+            </div>
+            <div class="table-filter">
+              <button class="filter-btn active" data-filter="all" id="filter-all">全部</button>
+              <button class="filter-btn" data-filter="active" id="filter-active">活躍</button>
+              <button class="filter-btn" data-filter="pending" id="filter-pending">審核中</button>
+              <button class="filter-btn" data-filter="inactive" id="filter-inactive">停用</button>
+            </div>
+            <button class="btn-add" id="add-investor-btn">
+              ＋ 新增投資者
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table id="investor-table">
+              <thead>
+                <tr>
+                  <th data-col="name">投資者 ⬍</th>
+                  <th data-col="plan">方案 ⬍</th>
+                  <th data-col="amount">投資金額 ⬍</th>
+                  <th data-col="return">報酬率 ⬍</th>
+                  <th data-col="profit">收益 ⬍</th>
+                  <th data-col="date">加入日期 ⬍</th>
+                  <th data-col="status">狀態 ⬍</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="investor-tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <span id="table-info">顯示 1-10 / 共 0 位投資者</span>
+            <div class="pagination" id="pagination"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================
+           PAGE: TRADES
+           ================================ -->
+      <div class="page" id="page-trades">
+        <div class="card">
+          <div class="card-head">
+            <h3>交易記錄</h3>
+            <span class="card-badge green">即時更新</span>
+          </div>
+          <div class="table-wrap">
+            <table id="trades-table">
+              <thead>
+                <tr>
+                  <th>時間</th>
+                  <th>交易對</th>
+                  <th>類型</th>
+                  <th>進場價格</th>
+                  <th>出場價格</th>
+                  <th>數量</th>
+                  <th>盈虧</th>
+                  <th>狀態</th>
+                </tr>
+              </thead>
+              <tbody id="trades-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================
+           PAGE: REPORTS
+           ================================ -->
+      <div class="page" id="page-reports">
+        <div class="page-placeholder">
+          <div class="icon">📊</div>
+          <h3>績效報告</h3>
+          <p>此功能正在開發中，將支援月度、季度、年度績效報告匯出及視覺化分析。</p>
+        </div>
+      </div>
+
+      <!-- ================================
+           PAGE: APPLICATIONS
+           ================================ -->
+      <div class="page" id="page-applications">
+        <div class="card">
+          <div class="card-head">
+            <h3>申請審核</h3>
+            <span class="card-badge gold">3 件待審</span>
+          </div>
+          <div class="table-wrap">
+            <table id="applications-table">
+              <thead>
+                <tr>
+                  <th>申請人</th>
+                  <th>申請方案</th>
+                  <th>投資金額</th>
+                  <th>申請日期</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="applications-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================
+           PAGE: SETTINGS
+           ================================ -->
+      <div class="page" id="page-settings">
+        <div class="page-placeholder">
+          <div class="icon">⚙️</div>
+          <h3>系統設定</h3>
+          <p>包含風控參數、手續費設定、通知設定及 API 整合配置，即將推出。</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ADD INVESTOR MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <h3>新增投資者</h3>
+      <p>填寫以下資料以手動新增投資者帳戶</p>
+      <form id="add-investor-form">
+        <div class="form-group">
+          <label class="form-label">姓名</label>
+          <input type="text" class="form-input" id="modal-name" placeholder="投資者全名" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">電子郵件</label>
+          <input type="email" class="form-input" id="modal-email" placeholder="investor@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">投資方案</label>
+          <select class="form-input" id="modal-plan" required>
+            <option value="">請選擇方案</option>
+            <option value="基礎方案">基礎方案</option>
+            <option value="專業方案">專業方案</option>
+            <option value="VIP 方案">VIP 方案</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">投資金額 (USDT)</label>
+          <input type="number" class="form-input" id="modal-amount" placeholder="10000" min="10000" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="modal-cancel">取消</button>
+          <button type="submit" class="btn-submit">確認新增</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

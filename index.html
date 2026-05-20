@@ -3,107 +3,261 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TRANSAI — AI 自動交易系統 | 智能投資新紀元</title>
-  <meta name="description" content="TRANSAI 是全球領先的 AI 自動交易系統，為投資者提供智能、穩定、透明的交易解決方案。立即加入，開啟您的智能投資之旅。">
+  <title>TRANSAI — AI Bots Trading | Simple to Join, Easy to Exit</title>
+  <meta name="description" content="TRANSAI provides AI-managed automated trading. Simple to join, easy to exit. Start your intelligent investment journey today.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="#" class="nav-logo">
-          <div class="nav-logo-icon">T</div>
-          <span class="nav-logo-text">TRANSAI</span>
-        </a>
-        <ul class="nav-links">
-          <li><a href="#how-it-works">運作方式</a></li>
-          <li><a href="#performance">績效表現</a></li>
-          <li><a href="#pricing">投資方案</a></li>
-          <li><a href="#faq">常見問題</a></li>
-        </ul>
-        <div class="nav-cta">
-          <a href="dashboard.html" class="btn btn-outline" id="nav-dashboard-btn">管理後台</a>
-          <a href="#join" class="btn btn-gold" id="nav-join-btn">立即加入</a>
-        </div>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">T</div>
+        <span class="logo-text">TRANSAI</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li>
+          <a href="#">Buy Crypto <span class="arrow">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="#"><div class="dd-title">Credit / Debit Card</div><div class="dd-desc">Buy crypto with card instantly</div></a>
+            <a href="#"><div class="dd-title">Bank Transfer</div><div class="dd-desc">Low fees with bank deposit</div></a>
+            <a href="#"><div class="dd-title">P2P Trading</div><div class="dd-desc">Trade directly with other users</div></a>
+          </div>
+        </li>
+        <li><a href="#">Markets</a></li>
+        <li>
+          <a href="#">Trade <span class="arrow">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="#"><div class="dd-title">Convert</div><div class="dd-desc">Convert crypto to fiat and vice-versa</div></a>
+            <a href="#"><div class="dd-title">Spot</div><div class="dd-desc">Trade 150+ cryptocurrencies</div></a>
+            <a href="#"><div class="dd-title">Futures</div><div class="dd-desc">Maximize capital with cross-margin, multi-asset collateral</div></a>
+            <a href="dashboard.html"><div class="dd-title" style="color:#f0b429">AI Bots Trading</div><div class="dd-desc">AI-managed trading. Simple to join, easy to exit</div></a>
+          </div>
+        </li>
+        <li><a href="#">Earn</a></li>
+        <li><a href="#">Referral</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="nav-search">🔍 Search markets</div>
+        <a href="#" class="nav-link" id="nav-login-btn">Login</a>
+        <a href="#" class="btn-register" id="nav-register-btn">Register</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section class="hero" id="hero">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
     <div class="container">
       <div class="hero-content">
-        <!-- Left: Text -->
-        <div class="hero-text">
-          <div class="hero-badge animate-in">
-            <span class="dot"></span>
-            現正開放募資 · Round A
+        <!-- Left -->
+        <div class="hero-left">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            AI-Managed Trading · Round A Open
           </div>
-          <h1 class="hero-title animate-in delay-1">
-            AI 驅動的<br>
-            <span class="gradient-text">智能交易</span><br>
-            新紀元
+          <h1 class="hero-title">
+            Buy And Earn From<br>
+            <span class="highlight">AI Bots Trading</span>
           </h1>
-          <p class="hero-subtitle animate-in delay-2">
-            TRANSAI 利用先進的機器學習演算法，24/7 全天候分析全球市場，
-            自動執行最優交易策略，讓您的資產持續穩健增長。
+          <p class="hero-subtitle">
+            Choose from 150+ cryptocurrencies. Our AI engine monitors the market 24/7 and executes the optimal trading strategy automatically. Simple to join, easy to exit.
           </p>
-          <div class="hero-actions animate-in delay-3">
-            <a href="#join" class="btn btn-gold btn-xl" id="hero-join-btn">
-              🚀 立即申請加入
-            </a>
-            <a href="#how-it-works" class="btn btn-outline btn-lg" id="hero-learn-btn">
-              了解更多
-            </a>
+          <div class="hero-form">
+            <input type="email" class="hero-input" id="hero-email" placeholder="Enter your email address">
+            <button class="btn-get-started" id="hero-start-btn">Get Started</button>
           </div>
-          <div class="hero-trust animate-in delay-4">
-            <div class="hero-trust-avatars">
-              <span>🧑</span>
-              <span>👩</span>
-              <span>🧔</span>
-              <span>👩‍💼</span>
-            </div>
-            <span>已有 <strong style="color:var(--gold)">2,847</strong> 位投資者加入</span>
+          <div class="hero-trust">
+            <div class="trust-item"><span class="trust-check">✓</span> No trading experience required</div>
+            <div class="trust-item"><span class="trust-check">✓</span> Exit anytime</div>
+            <div class="trust-item"><span class="trust-check">✓</span> Transparent fees</div>
           </div>
         </div>
 
-        <!-- Right: Live Card -->
-        <div class="hero-visual animate-in delay-2">
-          <div class="live-card">
-            <div class="card-header">
-              <span class="card-title">Portfolio 實時概覽</span>
-              <span class="live-badge">
-                <span class="live-dot"></span>
-                LIVE
-              </span>
+        <!-- Right: Floating Coins -->
+        <div class="hero-visual">
+          <div class="coin-cluster">
+            <div class="coin-glow"></div>
+            <div class="coin-center">₿</div>
+            <div class="coin coin-1">Ξ</div>
+            <div class="coin coin-2">◎</div>
+            <div class="coin coin-3">⬡</div>
+            <div class="coin coin-4">🔗</div>
+            <div class="coin coin-5">◈</div>
+            <div class="coin coin-6">Ð</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track" id="ticker-track">
+      <div class="ticker-item"><span class="ticker-pair">BTC/USDT</span><span class="ticker-price">$67,234.50</span><span class="ticker-change up">+2.34%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">ETH/USDT</span><span class="ticker-price">$3,847.20</span><span class="ticker-change up">+1.87%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">SOL/USDT</span><span class="ticker-price">$158.90</span><span class="ticker-change up">+4.12%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">BNB/USDT</span><span class="ticker-price">$512.30</span><span class="ticker-change down">-0.58%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">AVAX/USDT</span><span class="ticker-price">$38.72</span><span class="ticker-change up">+3.21%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">LINK/USDT</span><span class="ticker-price">$14.82</span><span class="ticker-change up">+5.67%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">DOT/USDT</span><span class="ticker-price">$7.14</span><span class="ticker-change down">-1.23%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">ADA/USDT</span><span class="ticker-price">$0.4821</span><span class="ticker-change up">+2.09%</span></div>
+      <div class="ticker-sep">|</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="ticker-item"><span class="ticker-pair">BTC/USDT</span><span class="ticker-price">$67,234.50</span><span class="ticker-change up">+2.34%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">ETH/USDT</span><span class="ticker-price">$3,847.20</span><span class="ticker-change up">+1.87%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">SOL/USDT</span><span class="ticker-price">$158.90</span><span class="ticker-change up">+4.12%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">BNB/USDT</span><span class="ticker-price">$512.30</span><span class="ticker-change down">-0.58%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">AVAX/USDT</span><span class="ticker-price">$38.72</span><span class="ticker-change up">+3.21%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">LINK/USDT</span><span class="ticker-price">$14.82</span><span class="ticker-change up">+5.67%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">DOT/USDT</span><span class="ticker-price">$7.14</span><span class="ticker-change down">-1.23%</span></div>
+      <div class="ticker-sep">|</div>
+      <div class="ticker-item"><span class="ticker-pair">ADA/USDT</span><span class="ticker-price">$0.4821</span><span class="ticker-change up">+2.09%</span></div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Our Products</div>
+        <h2 class="section-title">Everything You Need to Trade & Earn</h2>
+        <p class="section-desc">From simple crypto purchases to sophisticated AI-powered trading bots</p>
+      </div>
+      <div class="products-grid">
+        <a href="#" class="product-card">
+          <div class="product-icon icon-gold">💳</div>
+          <div class="product-name">Buy Crypto</div>
+          <div class="product-desc">Purchase 150+ cryptocurrencies instantly with card or bank transfer</div>
+        </a>
+        <a href="#" class="product-card">
+          <div class="product-icon icon-navy">📈</div>
+          <div class="product-name">Spot Trading</div>
+          <div class="product-desc">Trade spot markets with deep liquidity and competitive fees</div>
+        </a>
+        <a href="#" class="product-card">
+          <div class="product-icon icon-blue">⚡</div>
+          <div class="product-name">Futures</div>
+          <div class="product-desc">Maximize capital with cross-margin, multi-asset collateral and settlement</div>
+        </a>
+        <a href="dashboard.html" class="product-card featured">
+          <div class="product-icon icon-gold">🤖</div>
+          <div class="product-name">AI Bots Trading</div>
+          <div class="product-desc">AI-managed trading. Simple to join, easy to exit. Performance-based fees only</div>
+          <span class="product-tag">⭐ Most Popular</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI BOTS SECTION -->
+  <section class="ai-section" id="ai-bots">
+    <div class="container">
+      <div class="ai-grid">
+        <!-- Left: Features -->
+        <div>
+          <div class="section-eyebrow">AI Bots Trading</div>
+          <h2 class="section-title" style="text-align:left">Intelligent Automation,<br>Consistent Returns</h2>
+          <p style="color:var(--text-2); font-size:14.5px; line-height:1.75; margin-top:12px; max-width:420px">
+            Our proprietary AI engine analyzes thousands of market signals every second, executing trades with precision and discipline that human traders cannot match.
+          </p>
+          <div class="ai-features">
+            <div class="ai-feature">
+              <div class="ai-feat-icon">🧠</div>
+              <div class="ai-feat-text">
+                <h4>Deep Learning Engine</h4>
+                <p>Processes 100K+ data points per second across technical, on-chain, and sentiment signals</p>
+              </div>
             </div>
-            <div class="portfolio-value">
-              <div class="label">總資產價值</div>
-              <div class="amount">$<span id="live-amount">1,284,937</span></div>
-              <div class="change">▲ +<span id="live-pct">18.4</span>% 本月收益</div>
+            <div class="ai-feature">
+              <div class="ai-feat-icon">🛡️</div>
+              <div class="ai-feat-text">
+                <h4>Smart Risk Control</h4>
+                <p>Multi-layer circuit breakers automatically reduce exposure during extreme volatility</p>
+              </div>
             </div>
-            <canvas id="live-chart-canvas"></canvas>
-            <div class="trade-list" id="trade-list">
-              <div class="trade-item">
-                <span class="trade-pair">BTC/USDT</span>
-                <span class="trade-type buy">BUY</span>
-                <span class="trade-profit pos">+$2,847</span>
+            <div class="ai-feature">
+              <div class="ai-feat-icon">🔍</div>
+              <div class="ai-feat-text">
+                <h4>Full Transparency</h4>
+                <p>Real-time dashboard shows every trade, P&L, and bot status. You always stay in control</p>
               </div>
-              <div class="trade-item">
-                <span class="trade-pair">ETH/USDT</span>
-                <span class="trade-type buy">BUY</span>
-                <span class="trade-profit pos">+$1,203</span>
+            </div>
+            <div class="ai-feature">
+              <div class="ai-feat-icon">🚪</div>
+              <div class="ai-feat-text">
+                <h4>Exit Anytime</h4>
+                <p>No lock-in periods. Exit your bot position at any time with a single click</p>
               </div>
-              <div class="trade-item">
-                <span class="trade-pair">SOL/USDT</span>
-                <span class="trade-type sell">SELL</span>
-                <span class="trade-profit pos">+$894</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Wallet Preview -->
+        <div class="wallet-preview">
+          <div class="wp-topbar">
+            <div class="wp-logo">
+              <div class="dot">T</div>
+              TRANSAI
+            </div>
+            <div class="wp-nav">
+              <span>Trade</span>
+              <span>Earn</span>
+              <span style="color:rgba(255,255,255,0.7)">AI Bots</span>
+            </div>
+          </div>
+          <div class="wp-body">
+            <div class="wp-sidebar">
+              <div class="wp-si">📊 Overview</div>
+              <div class="wp-si">💰 Spot</div>
+              <div class="wp-si">⚡ Futures</div>
+              <div class="wp-si">💎 Earn</div>
+              <div class="wp-si active">🤖 AI Bots</div>
+              <div class="wp-si">🕐 History</div>
+            </div>
+            <div class="wp-content">
+              <div class="wp-page-title">AI Bots Wallet</div>
+              <div class="wp-balance">
+                <div class="wp-bal-label">Available | Total ⓘ</div>
+                <div class="wp-bal-amount">1,000,000.00 <span style="font-size:13px;color:var(--text-2)">USD</span></div>
+                <div class="wp-bal-pnl">7-Day P&L: + 999.51 USD →</div>
               </div>
+              <div class="wp-actions">
+                <div class="wp-action">
+                  <div class="wp-action-icon">⬇️</div>
+                  <span>Join AI Bots</span>
+                </div>
+                <div class="wp-action">
+                  <div class="wp-action-icon" style="background:rgba(240,180,41,0.2)">⇄</div>
+                  <span style="color:var(--gold)">Transfer</span>
+                </div>
+                <div class="wp-action">
+                  <div class="wp-action-icon">🕐</div>
+                  <span>History</span>
+                </div>
+              </div>
+              <div class="wp-bot-row">
+                <span class="wp-bot-name">BTC-PERP</span>
+                <span class="tag tag-green">Long</span>
+                <span class="tag tag-blue">100.00x</span>
+                <span class="wp-bot-roi">+184.22%</span>
+              </div>
+              <div style="font-size:10px;color:var(--text-3);margin-top:4px;padding-left:2px">Futures Grid · Running 0d-02h-05m</div>
             </div>
           </div>
         </div>
@@ -111,359 +265,142 @@
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <section class="stats-bar">
+  <!-- STATS -->
+  <section class="stats">
     <div class="container">
       <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-value" id="stat-aum">$0</div>
-          <div class="stat-label">總管理資產 (AUM)</div>
+        <div class="stats-item">
+          <div class="stats-val" id="stat-aum">$284M+</div>
+          <div class="stats-label">Assets Under Management</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-value" id="stat-return">0%</div>
-          <div class="stat-label">年化平均報酬率</div>
+        <div class="stats-item">
+          <div class="stats-val" id="stat-return">+84.2%</div>
+          <div class="stats-label">YTD Average Return</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-value" id="stat-investors">0</div>
-          <div class="stat-label">活躍投資者</div>
+        <div class="stats-item">
+          <div class="stats-val" id="stat-users">2,847</div>
+          <div class="stats-label">Active Investors</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-value" id="stat-winrate">0%</div>
-          <div class="stat-label">交易勝率</div>
+        <div class="stats-item">
+          <div class="stats-val" id="stat-win">91.3%</div>
+          <div class="stats-label">Win Rate</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="section" id="how-it-works">
+  <section class="hiw" id="how-it-works">
     <div class="container">
-      <div class="section-label">運作方式</div>
-      <h2 class="section-title">三步驟開始<span class="gradient-text">智能投資</span></h2>
-      <p class="section-desc">從加入到獲利，整個過程完全透明且自動化，無需交易經驗</p>
-
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">01</div>
-          <div class="step-icon">📋</div>
-          <h3 class="step-title">申請加入</h3>
-          <p class="step-desc">填寫申請表單，選擇適合您的投資方案。KYC 驗證通過後，即可啟動您的投資帳戶。最低門檻僅需 $10,000 USDT。</p>
+      <div class="section-head">
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">Start Earning in 3 Simple Steps</h2>
+        <p class="section-desc">No trading experience required. From registration to profit in minutes</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-emoji">📋</div>
+          <h3 class="step-title">Register & Verify</h3>
+          <p class="step-desc">Create your account, complete KYC verification, and choose your investment plan. Minimum entry from $10,000 USDT.</p>
         </div>
-        <div class="step-card">
-          <div class="step-number">02</div>
-          <div class="step-icon">🤖</div>
-          <h3 class="step-title">AI 自動運作</h3>
-          <p class="step-desc">我們的 AI 引擎 24/7 監控全球交易所，即時分析市場訊號，自動執行買賣策略，智能管理風險敞口。</p>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-emoji">🤖</div>
+          <h3 class="step-title">Transfer Funds to AI Bot</h3>
+          <p class="step-desc">Transfer funds from your Spot Wallet to the AI Bots Wallet. Our AI engine starts trading immediately, 24/7.</p>
         </div>
-        <div class="step-card">
-          <div class="step-number">03</div>
-          <div class="step-icon">💰</div>
-          <h3 class="step-title">獲取收益</h3>
-          <p class="step-desc">每月自動結算收益，透明的報表讓您隨時掌握資產狀況。可選擇複利再投或提領至指定帳戶。</p>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-emoji">💰</div>
+          <h3 class="step-title">Monitor & Earn</h3>
+          <p class="step-desc">Watch your portfolio grow in real-time. Exit anytime or compound your returns automatically each month.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PERFORMANCE SECTION -->
-  <section class="performance-section" id="performance">
+  <!-- CTA -->
+  <section class="cta" id="get-started">
     <div class="container">
-      <div class="performance-grid">
-        <div>
-          <div class="section-label">績效表現</div>
-          <h2 class="section-title" style="text-align:left">數據說話<br><span class="cyan-text">持續穩定獲利</span></h2>
-          <p style="color:var(--text-secondary); font-size:15px; line-height:1.8; margin-top:16px; max-width:440px">
-            自 2022 年上線以來，TRANSAI 在各種市場環境下均保持穩定正報酬，
-            最大回撤嚴格控制在 8% 以內，夏普比率長期維持在 2.4 以上。
-          </p>
-          <div class="performance-stats">
-            <div class="perf-stat">
-              <div class="value gold">+247%</div>
-              <div class="label">自上線累計報酬</div>
-            </div>
-            <div class="perf-stat">
-              <div class="value cyan">2.4x</div>
-              <div class="label">夏普比率 (Sharpe)</div>
-            </div>
-            <div class="perf-stat">
-              <div class="value green">91.3%</div>
-              <div class="label">交易勝率</div>
-            </div>
-            <div class="perf-stat">
-              <div class="value" style="color:var(--red)">-7.8%</div>
-              <div class="label">最大回撤 (Max DD)</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="chart-card">
-          <div class="card-header">
-            <span class="card-title">淨值走勢 (NAV)</span>
-            <span style="font-size:12px; color:var(--green)">▲ 本年 +84.2%</span>
-          </div>
-          <canvas id="perf-chart"></canvas>
-        </div>
+      <h2>Start Your AI Trading Journey Today</h2>
+      <p>Join 2,847+ investors already earning with TRANSAI's intelligent trading bots</p>
+      <div class="cta-form">
+        <input type="email" class="cta-input" id="cta-email" placeholder="Enter your email address">
+        <button class="btn-cta" id="cta-btn">Get Started Free</button>
       </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing-section" id="pricing">
-    <div class="container">
-      <div class="section-label">投資方案</div>
-      <h2 class="section-title">選擇適合您的<span class="gradient-text">投資計劃</span></h2>
-      <p class="section-desc">透明的費用結構，所有收費以績效為導向，我們與您共同成長</p>
-
-      <div class="pricing-grid">
-        <!-- Basic -->
-        <div class="pricing-card">
-          <div class="tier-name">基礎方案</div>
-          <div class="tier-price">$10,000 <span>USDT起</span></div>
-          <div class="tier-unit">管理費 1.5% / 年 + 績效費 20%</div>
-          <ul class="tier-features">
-            <li><span class="check">✓</span> AI 自動交易策略</li>
-            <li><span class="check">✓</span> 月度績效報告</li>
-            <li><span class="check">✓</span> 電郵客服支援</li>
-            <li><span class="check">✓</span> 基礎風控設定</li>
-            <li><span class="cross">✗</span> 專屬策略顧問</li>
-            <li><span class="cross">✗</span> API 資產整合</li>
-          </ul>
-          <button class="btn btn-tier-outline" id="basic-plan-btn">選擇基礎方案</button>
-        </div>
-
-        <!-- Pro (Featured) -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge">⭐ 最受歡迎</div>
-          <div class="tier-name">專業方案</div>
-          <div class="tier-price"><span class="gradient-text">$50,000</span> <span>USDT起</span></div>
-          <div class="tier-unit">管理費 1.0% / 年 + 績效費 18%</div>
-          <ul class="tier-features">
-            <li><span class="check">✓</span> AI 自動交易策略</li>
-            <li><span class="check">✓</span> 週度績效報告</li>
-            <li><span class="check">✓</span> 優先客服 24/7</li>
-            <li><span class="check">✓</span> 進階風控客製化</li>
-            <li><span class="check">✓</span> 專屬策略顧問</li>
-            <li><span class="cross">✗</span> API 資產整合</li>
-          </ul>
-          <button class="btn btn-tier-gold btn" id="pro-plan-btn">選擇專業方案</button>
-        </div>
-
-        <!-- VIP -->
-        <div class="pricing-card">
-          <div class="tier-name">VIP 方案</div>
-          <div class="tier-price">$200,000 <span>USDT起</span></div>
-          <div class="tier-unit">管理費 0.5% / 年 + 績效費 15%</div>
-          <ul class="tier-features">
-            <li><span class="check">✓</span> AI 自動交易策略</li>
-            <li><span class="check">✓</span> 即時績效儀表板</li>
-            <li><span class="check">✓</span> 專線 VIP 客服</li>
-            <li><span class="check">✓</span> 全方位客製化風控</li>
-            <li><span class="check">✓</span> 專屬策略顧問</li>
-            <li><span class="check">✓</span> API 資產整合</li>
-          </ul>
-          <button class="btn btn-tier-outline" id="vip-plan-btn">聯繫 VIP 顧問</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq-section" id="faq">
-    <div class="container">
-      <div class="section-label">常見問題</div>
-      <h2 class="section-title">您想知道的<span class="gradient-text">一切</span></h2>
-
-      <div class="faq-list" id="faq-list">
-        <div class="faq-item" data-faq="0">
-          <div class="faq-question" id="faq-q-0">
-            TRANSAI 的 AI 如何做出交易決策？
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-a-0">
-            <div class="faq-answer-inner">
-              我們的 AI 系統整合了技術分析、鏈上數據分析、宏觀市場訊號及情緒分析等多維度資料，
-              透過深度學習模型進行即時預測。系統每秒處理超過 10 萬個數據點，並在毫秒內做出交易決策，
-              遠超人類交易員的反應速度與精確度。
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" data-faq="1">
-          <div class="faq-question" id="faq-q-1">
-            我的資金安全嗎？如何保護我的資產？
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-a-1">
-            <div class="faq-answer-inner">
-              您的資產始終由您掌控。TRANSAI 採用智能合約技術，資金存放在多重簽名冷錢包中，
-              我們只有交易授權而無提款授權。同時我們備有 5% 的風險準備金，
-              並為所有投資者購買保險，最大程度保障您的資產安全。
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" data-faq="2">
-          <div class="faq-question" id="faq-q-2">
-            收益如何計算與分配？
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-a-2">
-            <div class="faq-answer-inner">
-              收益採用高水位標記 (High Watermark) 計算方式，確保您不會重複支付虧損期間的績效費。
-              每月最後一個交易日進行結算，收益可選擇自動複利再投資或提領至您的指定錢包地址，
-              提領通常在 3 個工作日內完成。
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" data-faq="3">
-          <div class="faq-question" id="faq-q-3">
-            最低投資金額是多少？鎖倉期有多長？
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-a-3">
-            <div class="faq-answer-inner">
-              最低投資門檻為 $10,000 USDT（基礎方案）。標準鎖倉期為 3 個月，
-              3 個月後可隨時申請贖回，贖回通知期為 30 天。
-              VIP 方案可享有更彈性的鎖倉與贖回條件，歡迎聯繫我們的顧問團隊。
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item" data-faq="4">
-          <div class="faq-question" id="faq-q-4">
-            如果市場出現極端行情，系統如何應對？
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-a-4">
-            <div class="faq-answer-inner">
-              我們的風控系統設有多重熔斷機制。當市場波動超過預設閾值時，
-              系統會自動降低倉位或完全平倉，切換至穩定幣保值模式。
-              歷史上我們在 2022 年熊市期間最大回撤僅為 7.8%，遠低於市場整體跌幅。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- JOIN FORM -->
-  <section class="join-section" id="join">
-    <div class="container">
-      <div class="section-label">立即加入</div>
-      <h2 class="section-title" style="margin-bottom:8px">開啟您的<span class="gradient-text">智能投資</span>之旅</h2>
-      <p class="section-desc">填寫以下資料，我們的顧問將在 24 小時內與您聯繫</p>
-
-      <div class="join-card">
-        <form id="join-form">
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label" for="first-name">名字</label>
-              <input type="text" id="first-name" class="form-input" placeholder="Howard" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="last-name">姓氏</label>
-              <input type="text" id="last-name" class="form-input" placeholder="Tz" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">電子郵件</label>
-            <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="phone">聯絡電話（含國碼）</label>
-            <input type="tel" id="phone" class="form-input" placeholder="+886 9xx xxx xxx">
-          </div>
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label" for="invest-amount">預計投資金額</label>
-              <select id="invest-amount" class="form-input form-select" required>
-                <option value="" disabled selected>請選擇</option>
-                <option value="10k-50k">$10,000 - $50,000 USDT</option>
-                <option value="50k-200k">$50,000 - $200,000 USDT</option>
-                <option value="200k+">$200,000+ USDT (VIP)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="invest-plan">投資方案</label>
-              <select id="invest-plan" class="form-input form-select" required>
-                <option value="" disabled selected>請選擇</option>
-                <option value="basic">基礎方案</option>
-                <option value="pro">專業方案</option>
-                <option value="vip">VIP 方案</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="message">備註（選填）</label>
-            <input type="text" id="message" class="form-input" placeholder="有任何特別需求或問題，請告知我們...">
-          </div>
-          <button type="submit" class="btn btn-gold form-submit" id="join-submit-btn">
-            🚀 提交申請
-          </button>
-          <p class="form-disclaimer">
-            提交即表示您同意我們的服務條款與隱私政策。<br>
-            ⚠️ 投資有風險，過去績效不代表未來報酬，請審慎評估。
-          </p>
-        </form>
-        <div class="form-success" id="form-success">
-          <div class="success-icon">🎉</div>
-          <h3 class="gradient-text">申請已成功送出！</h3>
-          <p>感謝您的申請，我們的顧問團隊將在 24 小時內透過您留下的電郵與您聯繫。<br>歡迎加入 TRANSAI 智能投資社群！</p>
-        </div>
-      </div>
+      <p class="cta-note">⚠️ Investment involves risk. Past performance does not guarantee future results.</p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="risk-warning">
-        ⚠️ 風險警示：投資加密貨幣資產涉及重大風險，包括市場波動、流動性風險及潛在資本損失。過去的績效表現不保證未來報酬。
-        本網站內容僅供參考，不構成投資建議。請在充分了解風險後，依據個人財務狀況謹慎決策。
-      </div>
       <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="nav-logo">
-            <div class="nav-logo-icon">T</div>
-            <span class="nav-logo-text">TRANSAI</span>
+        <div>
+          <a href="#" class="nav-logo" style="margin-right:0">
+            <div class="logo-icon">T</div>
+            <span class="logo-text">TRANSAI</span>
           </a>
-          <p>由頂尖量化交易師與 AI 工程師共同打造，為全球投資者提供最先進的智能交易解決方案。</p>
+          <p class="footer-brand-desc">AI-powered trading platform built by quantitative traders and machine learning engineers for global investors.</p>
         </div>
         <div class="footer-col">
-          <h4>產品</h4>
+          <h4>Products</h4>
           <ul>
-            <li><a href="#how-it-works">運作方式</a></li>
-            <li><a href="#performance">績效表現</a></li>
-            <li><a href="#pricing">投資方案</a></li>
-            <li><a href="dashboard.html">管理後台</a></li>
+            <li><a href="#">Buy Crypto</a></li>
+            <li><a href="#">Spot Trading</a></li>
+            <li><a href="#">Futures</a></li>
+            <li><a href="dashboard.html">AI Bots</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>公司</h4>
+          <h4>Company</h4>
           <ul>
-            <li><a href="#">關於我們</a></li>
-            <li><a href="#">團隊介紹</a></li>
-            <li><a href="#">媒體報導</a></li>
-            <li><a href="#">職缺招募</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>法律</h4>
+          <h4>Legal</h4>
           <ul>
-            <li><a href="#">服務條款</a></li>
-            <li><a href="#">隱私政策</a></li>
-            <li><a href="#">風險聲明</a></li>
-            <li><a href="#">聯絡我們</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Risk Disclosure</a></li>
+            <li><a href="#">Contact Us</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© 2025 TRANSAI. All rights reserved.</span>
-        <span style="color:var(--text-muted)">Powered by Advanced AI · Secured by Blockchain</span>
+        <span>AI-Managed · Performance-Based · Transparent</span>
       </div>
     </div>
   </footer>
+
+  <!-- Register Modal -->
+  <div class="modal-overlay" id="register-modal">
+    <div class="modal">
+      <button class="modal-close" id="modal-close-btn">✕</button>
+      <h3>Create Your Account</h3>
+      <p class="modal-sub">Join TRANSAI and start earning with AI bots today</p>
+      <div class="form-field">
+        <label class="field-label" for="reg-email">Email Address</label>
+        <input type="email" id="reg-email" class="field-input" placeholder="you@example.com">
+      </div>
+      <div class="form-field">
+        <label class="field-label" for="reg-password">Password</label>
+        <input type="password" id="reg-password" class="field-input" placeholder="Create a strong password">
+      </div>
+      <div class="form-field">
+        <label class="field-label" for="reg-referral">Referral Code (optional)</label>
+        <input type="text" id="reg-referral" class="field-input" placeholder="Enter referral code">
+      </div>
+      <button class="btn-modal" id="reg-submit-btn">Create Account →</button>
+      <p class="modal-footer-text">Already have an account? <a href="#">Sign In</a></p>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

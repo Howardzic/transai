@@ -3,68 +3,17 @@
    Login, Toggle, Fund Management, VIP System
    ============================================= */
 
-/* ==============================
-   DATA: PUBLIC FUNDS
-   ============================== */
 const PUBLIC_FUNDS = [
-  {
-    id: 'alpha',
-    name: 'Alpha Fund 甲號',
-    nameEn: 'Alpha Fund',
-    risk: 'high',
-    riskLabel: '高風險',
-    annualReturn: 130,
-    strategy: 'ETH/USDT 100x 永續合約',
-    cap: 500000,
-    raised: 287500,
-    minInvest: 5000,
-    lockDays: 30,
-    investors: 34,
-    type: 'public',
-  },
-  {
-    id: 'beta',
-    name: 'Beta Fund 乙號',
-    nameEn: 'Beta Fund',
-    risk: 'medium',
-    riskLabel: '中風險',
-    annualReturn: 72,
-    strategy: 'ETH/USDT 50x 永續合約',
-    cap: 300000,
-    raised: 198000,
-    minInvest: 1000,
-    lockDays: 14,
-    investors: 28,
-    type: 'public',
-  },
-  {
-    id: 'stable',
-    name: 'Stable Fund 丙號',
-    nameEn: 'Stable Fund',
-    risk: 'low',
-    riskLabel: '低風險',
-    annualReturn: 28,
-    strategy: 'ETH/USDT 10x 永續合約',
-    cap: 1000000,
-    raised: 423000,
-    minInvest: 100,
-    lockDays: 0,
-    investors: 87,
-    type: 'public',
-  },
+  { id: 'alpha',  risk: 'high',   annualReturn: 130, strategy: 'ETH/USDT 100x', cap: 500000,  raised: 287500, minInvest: 5000, lockDays: 30, investors: 34, type: 'public' },
+  { id: 'beta',   risk: 'medium', annualReturn: 72,  strategy: 'ETH/USDT 50x',  cap: 300000,  raised: 198000, minInvest: 1000, lockDays: 14, investors: 28, type: 'public' },
+  { id: 'stable', risk: 'low',    annualReturn: 28,  strategy: 'ETH/USDT 10x',  cap: 1000000, raised: 423000, minInvest: 100,  lockDays: 0,  investors: 87, type: 'public' },
 ];
 
-/* ==============================
-   STATE (localStorage)
-   ============================== */
 function getAiToggle() { return localStorage.getItem('transai_ai_toggle') === 'true'; }
 function setAiToggle(val) { localStorage.setItem('transai_ai_toggle', val ? 'true' : 'false'); }
 function getVipFunds() { try { return JSON.parse(localStorage.getItem('transai_vip_funds') || '[]'); } catch { return []; } }
 function saveVipFunds(arr) { localStorage.setItem('transai_vip_funds', JSON.stringify(arr)); }
 
-/* ==============================
-   UTILS
-   ============================== */
 function genToken() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let t = '';
@@ -77,11 +26,11 @@ function fmtUSD(n) { return '$' + Number(n).toLocaleString('en-US', { minimumFra
 function showToast(msg, type = '') {
   const old = document.querySelector('.toast');
   if (old) old.remove();
-  const t = document.createElement('div');
-  t.className = 'toast' + (type ? ' ' + type : '');
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity 0.3s'; setTimeout(() => t.remove(), 300); }, 3000);
+  const el = document.createElement('div');
+  el.className = 'toast' + (type ? ' ' + type : '');
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity 0.3s'; setTimeout(() => el.remove(), 300); }, 3000);
 }
 
 function getVipLink(token) {
@@ -89,19 +38,18 @@ function getVipLink(token) {
 }
 
 function setQrImg(imgEl, url) {
-  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=152747&bgcolor=FFFFFF&margin=12&data=${encodeURIComponent(url)}`;
-  imgEl.src = qrApiUrl;
+  imgEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=152747&bgcolor=FFFFFF&margin=12&data=${encodeURIComponent(url)}`;
+}
+
+function riskLabel(risk) {
+  return _t('risk_' + risk + '_label');
 }
 
 /* ==============================
    LOGIN
    ============================== */
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Check if already logged in
-  if (sessionStorage.getItem('transai_admin') === 'yes') {
-    showAdminPanel();
-  }
+  if (sessionStorage.getItem('transai_admin') === 'yes') showAdminPanel();
 
   document.getElementById('login-btn').addEventListener('click', doLogin);
   document.getElementById('login-pass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
@@ -137,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
    INIT ADMIN PANEL
    ============================== */
 function initAdmin() {
-  // Sync both toggles
   const cb1 = document.getElementById('ai-toggle-checkbox');
   const cb2 = document.getElementById('ai-toggle-checkbox-2');
 
@@ -148,11 +95,9 @@ function initAdmin() {
   }
 
   syncToggles(getAiToggle());
-
   cb1.addEventListener('change', () => { setAiToggle(cb1.checked); syncToggles(cb1.checked); });
   if (cb2) cb2.addEventListener('change', () => { setAiToggle(cb2.checked); syncToggles(cb2.checked); });
 
-  // Sidebar navigation
   document.querySelectorAll('.sb-item[data-page]').forEach(item => {
     item.addEventListener('click', e => {
       e.preventDefault();
@@ -161,14 +106,12 @@ function initAdmin() {
       const page = item.dataset.page;
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + page)?.classList.add('active');
-
       if (page === 'funds') renderAllFundsTable();
       if (page === 'vip') renderVipCards();
       if (page === 'overview') { renderOverviewFundTable(); updateKpis(); }
     });
   });
 
-  // Modal close buttons
   document.querySelectorAll('[data-close]').forEach(btn => {
     btn.addEventListener('click', () => closeModal(btn.dataset.close));
   });
@@ -176,32 +119,29 @@ function initAdmin() {
     ov.addEventListener('click', e => { if (e.target === ov) closeModal(ov.id); });
   });
 
-  // Create VIP buttons
   document.getElementById('create-vip-btn')?.addEventListener('click', () => openModal('modal-create-vip'));
 
-  // Overview page init
   renderOverviewFundTable();
   updateKpis();
 
-  // Generate VIP
   document.getElementById('generate-vip-btn')?.addEventListener('click', generateVipFund);
 
-  // Copy link buttons
   document.getElementById('copy-link-btn')?.addEventListener('click', () => {
     copyToClipboard(document.getElementById('vip-modal-link').textContent);
     const btn = document.getElementById('copy-link-btn');
-    btn.textContent = '✓ 已複製'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 2000);
+    btn.textContent = _t('admin_copied_btn');
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = _t('admin_copy_btn'); btn.classList.remove('copied'); }, 2000);
   });
 
   document.getElementById('copy-view-link-btn')?.addEventListener('click', () => {
     copyToClipboard(document.getElementById('view-modal-link').textContent);
     const btn = document.getElementById('copy-view-link-btn');
-    btn.textContent = '✓ 已複製'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 2000);
+    btn.textContent = _t('admin_copied_btn');
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = _t('admin_copy_btn'); btn.classList.remove('copied'); }, 2000);
   });
 
-  // Adjust amount
   document.getElementById('adjust-plus')?.addEventListener('click', () => {
     const inp = document.getElementById('adjust-delta');
     inp.value = Math.abs(Number(inp.value) || 0) + 1000;
@@ -227,9 +167,9 @@ function updateToggleBanner(on) {
   banner.className = 'ai-toggle-banner ' + (on ? 'on' : 'off');
   if (statusText) {
     statusText.className = 'ai-toggle-status ' + (on ? 'on' : 'off');
-    statusText.textContent = on ? '目前開啟 — 客戶端顯示基金選項' : '目前關閉 — 客戶端不顯示';
+    statusText.textContent = _t(on ? 'admin_toggle_on_text' : 'admin_toggle_off_text');
   }
-  if (label) label.textContent = on ? '已開啟' : '已關閉';
+  if (label) label.textContent = _t(on ? 'admin_toggle_label_on' : 'admin_toggle_label_off');
 }
 
 /* ==============================
@@ -252,19 +192,20 @@ function renderOverviewFundTable() {
   if (!tbody) return;
   tbody.innerHTML = PUBLIC_FUNDS.map(f => {
     const pct = ((f.raised / f.cap) * 100).toFixed(1);
+    const isFull = parseFloat(pct) >= 100;
     return `<tr>
-      <td><span style="font-weight:700;color:var(--text)">${f.name}</span></td>
-      <td><span class="risk-badge ${f.risk}">${f.riskLabel}</span></td>
+      <td><span style="font-weight:700;color:var(--text)">${_t('fund_name_' + f.id)}</span></td>
+      <td><span class="risk-badge ${f.risk}">${riskLabel(f.risk)}</span></td>
       <td><span class="num green">+${f.annualReturn}%</span></td>
       <td><span class="num">${fmtUSD(f.raised)}</span></td>
       <td>
         <div class="progress-wrap">
           <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-          <div class="progress-text">${pct}% (上限 ${fmtUSD(f.cap)})</div>
+          <div class="progress-text">${pct}% (${_t('admin_cap_label')} ${fmtUSD(f.cap)})</div>
         </div>
       </td>
-      <td>${f.investors} 人</td>
-      <td><span class="status-badge ${pct >= 100 ? 'full' : 'active'}">${pct >= 100 ? '已額滿' : '上線中'}</span></td>
+      <td>${f.investors}${_t('admin_investors_unit')}</td>
+      <td><span class="status-badge ${isFull ? 'full' : 'active'}">${_t(isFull ? 'admin_fund_full' : 'admin_fund_active')}</span></td>
     </tr>`;
   }).join('');
 }
@@ -280,30 +221,23 @@ function renderAllFundsTable() {
   const allFunds = [
     ...PUBLIC_FUNDS.map(f => ({ ...f, type: 'public' })),
     ...vipFunds.map(f => ({
-      id: f.token,
-      name: f.fundName,
-      risk: f.risk,
-      riskLabel: f.risk === 'high' ? '高風險' : f.risk === 'medium' ? '中風險' : '低風險',
-      annualReturn: f.annualRate,
-      cap: f.amount,
-      raised: f.amount,
-      investors: 1,
-      type: 'vip',
-      clientName: f.clientName,
-      token: f.token,
+      id: f.token, name: f.fundName, risk: f.risk,
+      annualReturn: f.annualRate, cap: f.amount, raised: f.amount,
+      investors: 1, type: 'vip', clientName: f.clientName, token: f.token,
     })),
   ];
 
   tbody.innerHTML = allFunds.map(f => {
     const pct = Math.min(((f.raised / f.cap) * 100), 100).toFixed(1);
     const isVip = f.type === 'vip';
+    const displayName = isVip ? f.name : _t('fund_name_' + f.id);
     return `<tr>
       <td>
-        <div style="font-weight:700;color:var(--text)">${f.name}</div>
-        ${isVip ? `<div style="font-size:11px;color:var(--text-3)">客戶：${f.clientName}</div>` : ''}
+        <div style="font-weight:700;color:var(--text)">${displayName}</div>
+        ${isVip ? `<div style="font-size:11px;color:var(--text-3)">${_t('admin_client_label')}${f.clientName}</div>` : ''}
       </td>
-      <td><span class="fund-type-badge ${f.type}">${isVip ? '👑 VIP' : '公開'}</span></td>
-      <td><span class="risk-badge ${f.risk}">${f.riskLabel}</span></td>
+      <td><span class="fund-type-badge ${f.type}">${isVip ? '👑 VIP' : _t('admin_type_public')}</span></td>
+      <td><span class="risk-badge ${f.risk}">${riskLabel(f.risk)}</span></td>
       <td><span class="num green">+${f.annualReturn}%</span></td>
       <td><span class="num">${fmtUSD(f.raised)}</span></td>
       <td><span class="num">${fmtUSD(f.cap)}</span></td>
@@ -313,13 +247,13 @@ function renderAllFundsTable() {
           <div class="progress-text">${pct}%</div>
         </div>
       </td>
-      <td>${f.investors} 人</td>
-      <td><span class="status-badge active">上線中</span></td>
+      <td>${f.investors}${_t('admin_investors_unit')}</td>
+      <td><span class="status-badge active">${_t('admin_fund_active')}</span></td>
       <td style="display:flex;gap:6px;align-items:center">
         ${isVip ? `
-          <button class="tbl-btn gold" onclick="openViewLink('${f.token}')">🔗 連結</button>
-          <button class="tbl-btn" onclick="openAdjust('${f.token}')">💰 調整</button>
-        ` : `<button class="tbl-btn" onclick="showToast('公開基金詳情功能開發中')">詳情</button>`}
+          <button class="tbl-btn gold" onclick="openViewLink('${f.token}')">${_t('admin_link_btn')}</button>
+          <button class="tbl-btn" onclick="openAdjust('${f.token}')">${_t('admin_adjust_btn')}</button>
+        ` : `<button class="tbl-btn" onclick="showToast(_t('admin_detail_coming'))">${_t('admin_detail_btn')}</button>`}
       </td>
     </tr>`;
   }).join('');
@@ -349,25 +283,25 @@ function renderVipCards() {
         </div>
         <div class="vip-stats">
           <div class="vip-stat">
-            <div class="vip-stat-label">運用金額</div>
+            <div class="vip-stat-label">${_t('vip_stat_amount')}</div>
             <div class="vip-stat-val gold">${fmtUSD(f.amount)}</div>
           </div>
           <div class="vip-stat">
-            <div class="vip-stat-label">目標年化</div>
+            <div class="vip-stat-label">${_t('vip_stat_annual')}</div>
             <div class="vip-stat-val green">+${f.annualRate}%</div>
           </div>
           <div class="vip-stat">
-            <div class="vip-stat-label">推薦碼</div>
+            <div class="vip-stat-label">${_t('vip_stat_referral')}</div>
             <div class="vip-stat-val" style="font-size:12px">${f.referralCode || '—'}</div>
           </div>
           <div class="vip-stat">
-            <div class="vip-stat-label">建立日期</div>
+            <div class="vip-stat-label">${_t('vip_stat_created')}</div>
             <div class="vip-stat-val" style="font-size:12px">${f.createdDate}</div>
           </div>
         </div>
         <div class="vip-card-actions">
-          <button class="tbl-btn gold" style="flex:1" onclick="openViewLink('${f.token}')">🔗 查看連結</button>
-          <button class="tbl-btn" style="flex:1" onclick="openAdjust('${f.token}')">💰 調整金額</button>
+          <button class="tbl-btn gold" style="flex:1" onclick="openViewLink('${f.token}')">${_t('vip_card_view')}</button>
+          <button class="tbl-btn" style="flex:1" onclick="openAdjust('${f.token}')">${_t('vip_card_adjust')}</button>
         </div>
       </div>
     `).join('');
@@ -379,27 +313,25 @@ function renderVipCards() {
    ============================== */
 function generateVipFund() {
   const clientName = document.getElementById('vip-client-name').value.trim();
-  const fundName = document.getElementById('vip-fund-name').value.trim();
+  const fundName   = document.getElementById('vip-fund-name').value.trim();
   const annualRate = Number(document.getElementById('vip-annual-rate').value);
-  const amount = Number(document.getElementById('vip-amount').value);
+  const amount     = Number(document.getElementById('vip-amount').value);
   const referralCode = document.getElementById('vip-referral').value.trim();
-  const isNewUser = document.getElementById('vip-is-new-user').checked;
-  const risk = document.getElementById('vip-risk').value;
+  const isNewUser  = document.getElementById('vip-is-new-user').checked;
+  const risk       = document.getElementById('vip-risk').value;
 
   if (!clientName || !fundName || !annualRate || !amount) {
-    showToast('請填寫所有必填欄位', 'error'); return;
+    showToast(_t('admin_fill_required'), 'error'); return;
   }
 
   const token = genToken();
   const now = new Date();
   const createdDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-
   const newFund = { token, clientName, fundName, annualRate, amount, referralCode, isNewUser, risk, createdDate };
   const vipFunds = getVipFunds();
   vipFunds.push(newFund);
   saveVipFunds(vipFunds);
 
-  // Reset form
   ['vip-client-name','vip-fund-name','vip-annual-rate','vip-amount','vip-referral'].forEach(id => {
     document.getElementById(id).value = '';
   });
@@ -408,14 +340,15 @@ function generateVipFund() {
   showVipLinkModal(newFund, 'modal-vip-link', 'vip-modal-link', 'vip-qr-img', 'vip-modal-client-name', 'vip-modal-fund-info');
   renderVipCards();
   updateKpis();
-  showToast(`✅ ${clientName} 的 VIP 專屬基金已建立！`, 'success');
+  showToast(`✅ ${clientName} — ${_t('vip_stat_amount')} ${fmtUSD(amount)} USDT`, 'success');
 }
 
 function showVipLinkModal(fund, overlayId, linkElId, qrElId, nameElId, infoElId) {
   const link = getVipLink(fund.token);
   document.getElementById(linkElId).textContent = link;
   document.getElementById(nameElId).textContent = fund.clientName;
-  document.getElementById(infoElId).textContent = `${fund.fundName} · 年化 +${fund.annualRate}% · 運用 ${fmtUSD(fund.amount)} USDT`;
+  document.getElementById(infoElId).textContent =
+    `${fund.fundName} · ${_t('fund_annual_return')} +${fund.annualRate}% · ${fmtUSD(fund.amount)} USDT`;
   setQrImg(document.getElementById(qrElId), link);
   openModal(overlayId);
 }
@@ -426,9 +359,6 @@ function showVipLinkModal(fund, overlayId, linkElId, qrElId, nameElId, infoElId)
 window.openViewLink = function(token) {
   const fund = getVipFunds().find(f => f.token === token);
   if (!fund) return;
-  showVipLinkModal(fund, 'modal-view-link', 'view-modal-link', 'view-qr-img',
-    // reuse modal-vip-link elements not available; set directly:
-    'view-modal-link', 'view-modal-link');
   const link = getVipLink(token);
   document.getElementById('view-modal-link').textContent = link;
   setQrImg(document.getElementById('view-qr-img'), link);
@@ -473,7 +403,7 @@ function confirmAdjust() {
   renderVipCards();
   renderAllFundsTable();
   updateKpis();
-  showToast(`✅ ${vipFunds[idx].clientName} 運用金額已更新為 $${newAmt.toLocaleString()}`, 'success');
+  showToast(`✅ ${vipFunds[idx].clientName} → $${newAmt.toLocaleString()} USDT`, 'success');
   adjustingToken = null;
 }
 
@@ -492,3 +422,11 @@ function copyToClipboard(text) {
     ta.select(); document.execCommand('copy'); ta.remove();
   }
 }
+
+// Re-render on language change
+window.addEventListener('langchange', () => {
+  updateToggleBanner(getAiToggle());
+  renderOverviewFundTable();
+  if (document.getElementById('page-funds')?.classList.contains('active')) renderAllFundsTable();
+  if (document.getElementById('page-vip')?.classList.contains('active')) renderVipCards();
+});

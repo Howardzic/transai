@@ -8,35 +8,31 @@
 </head>
 <body>
 
-<!-- ============================================
-     LOGIN OVERLAY
-     ============================================ -->
+<!-- LOGIN OVERLAY -->
 <div class="login-overlay" id="login-overlay">
   <div class="login-card">
     <div class="login-logo">
       <div class="login-logo-icon">T</div>
       <span class="login-logo-text">TRANSAI</span>
-      <span class="login-logo-badge">管理後台</span>
+      <span class="login-logo-badge" data-i18n="admin_badge">管理後台</span>
     </div>
-    <h2 class="login-title">管理員登入</h2>
-    <p class="login-sub">請輸入管理員帳號與密碼</p>
+    <h2 class="login-title" data-i18n="admin_login_title">管理員登入</h2>
+    <p class="login-sub" data-i18n="admin_login_sub">請輸入管理員帳號與密碼</p>
     <div class="login-field">
-      <label class="login-label">帳號</label>
+      <label class="login-label" data-i18n="admin_username">帳號</label>
       <input type="text" class="login-input" id="login-user" placeholder="admin" autocomplete="off">
     </div>
     <div class="login-field">
-      <label class="login-label">密碼</label>
+      <label class="login-label" data-i18n="admin_password">密碼</label>
       <input type="password" class="login-input" id="login-pass" placeholder="••••••">
     </div>
-    <div class="login-error" id="login-error">⚠️ 帳號或密碼錯誤，請重試</div>
-    <button class="btn-login" id="login-btn">登入管理後台</button>
-    <p class="login-hint">Demo 帳密：<strong>admin</strong> / <strong>admin</strong></p>
+    <div class="login-error" id="login-error" data-i18n="admin_login_error">⚠️ 帳號或密碼錯誤，請重試</div>
+    <button class="btn-login" id="login-btn" data-i18n="admin_login_btn">登入管理後台</button>
+    <p class="login-hint" data-i18n="admin_hint">Demo 帳密：<strong>admin</strong> / <strong>admin</strong></p>
   </div>
 </div>
 
-<!-- ============================================
-     ADMIN PANEL (hidden until login)
-     ============================================ -->
+<!-- ADMIN PANEL -->
 <div id="admin-panel" style="display:none">
 
   <!-- TOP NAVBAR -->
@@ -47,8 +43,8 @@
       <span class="admin-badge-nav" style="margin-left:6px">ADMIN</span>
     </a>
     <div class="topnav-right">
-      <span class="tn-info">管理員：admin <span class="tn-separator">|</span> 最後登入：今天 18:00</span>
-      <button class="btn-logout" id="logout-btn">登出</button>
+      <span class="tn-info">admin <span class="tn-separator">|</span> 18:00</span>
+      <button class="btn-logout" id="logout-btn" data-i18n="admin_logout">登出</button>
     </div>
   </header>
 
@@ -56,35 +52,34 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-      <div class="sidebar-section-label">主選單</div>
+      <div class="sidebar-section-label" data-i18n="admin_main_menu">主選單</div>
       <nav style="display:flex;flex-direction:column;gap:2px">
         <a class="sb-item active" data-page="overview" href="#">
-          <span class="sb-icon">📊</span> 總覽
+          <span class="sb-icon">📊</span> <span data-i18n="admin_overview_nav">總覽</span>
         </a>
         <a class="sb-item" data-page="funds" href="#">
-          <span class="sb-icon">💼</span> 基金管理
+          <span class="sb-icon">💼</span> <span data-i18n="admin_fund_mgmt_nav">基金管理</span>
         </a>
         <a class="sb-item" data-page="vip" href="#">
-          <span class="sb-icon">👑</span> VIP 客戶
+          <span class="sb-icon">👑</span> <span data-i18n="admin_vip_nav">VIP 客戶</span>
         </a>
         <a class="sb-item" data-page="investors" href="#">
-          <span class="sb-icon">👥</span> 投資者列表
+          <span class="sb-icon">👥</span> <span data-i18n="admin_investors_nav">投資者列表</span>
         </a>
       </nav>
 
-      <div class="sidebar-section-label" style="margin-top:12px">系統</div>
+      <div class="sidebar-section-label" style="margin-top:12px" data-i18n="admin_system_menu">系統</div>
       <nav style="display:flex;flex-direction:column;gap:2px">
         <a class="sb-item" data-page="settings" href="#">
-          <span class="sb-icon">⚙️</span> 設定
+          <span class="sb-icon">⚙️</span> <span data-i18n="admin_settings_nav">設定</span>
         </a>
-        <!-- DISABLED pages -->
-        <a class="sb-item" style="opacity:0.35;cursor:not-allowed" href="#" onclick="return false" title="即將推出">
-          <span class="sb-icon">📈</span> 報表分析
-          <span style="margin-left:auto;font-size:9px;background:var(--border);color:var(--text-3);padding:2px 6px;border-radius:50px">即將推出</span>
+        <a class="sb-item" style="opacity:0.35;cursor:not-allowed" href="#" onclick="return false" data-i18n-title="coming_soon">
+          <span class="sb-icon">📈</span> <span data-i18n="admin_reports_nav">報表分析</span>
+          <span style="margin-left:auto;font-size:9px;background:var(--border);color:var(--text-3);padding:2px 6px;border-radius:50px" data-i18n="coming_soon">即將推出</span>
         </a>
-        <a class="sb-item" style="opacity:0.35;cursor:not-allowed" href="#" onclick="return false" title="即將推出">
-          <span class="sb-icon">🔔</span> 通知中心
-          <span style="margin-left:auto;font-size:9px;background:var(--border);color:var(--text-3);padding:2px 6px;border-radius:50px">即將推出</span>
+        <a class="sb-item" style="opacity:0.35;cursor:not-allowed" href="#" onclick="return false" data-i18n-title="coming_soon">
+          <span class="sb-icon">🔔</span> <span data-i18n="admin_notif_nav">通知中心</span>
+          <span style="margin-left:auto;font-size:9px;background:var(--border);color:var(--text-3);padding:2px 6px;border-radius:50px" data-i18n="coming_soon">即將推出</span>
         </a>
       </nav>
 
@@ -93,7 +88,7 @@
           <div class="sb-avatar">A</div>
           <div>
             <div class="sb-name">admin</div>
-            <div class="sb-role">超級管理員</div>
+            <div class="sb-role" data-i18n="admin_super_admin">超級管理員</div>
           </div>
         </div>
       </div>
@@ -102,16 +97,14 @@
     <!-- MAIN CONTENT -->
     <main class="main">
 
-      <!-- ==================
-           PAGE: OVERVIEW
-           ================== -->
+      <!-- PAGE: OVERVIEW -->
       <div class="page active" id="page-overview">
         <div class="page-header">
           <div>
-            <div class="page-title">系統總覽</div>
-            <div class="page-sub">AI 投資平台管理中心</div>
+            <div class="page-title" data-i18n="admin_page_overview">系統總覽</div>
+            <div class="page-sub" data-i18n="admin_page_overview_sub">AI 投資平台管理中心</div>
           </div>
-          <button class="btn-primary" onclick="document.querySelector('[data-page=vip]').click()">+ 新增 VIP 客戶</button>
+          <button class="btn-primary" onclick="document.querySelector('[data-page=vip]').click()" data-i18n="admin_add_vip">+ 新增 VIP 客戶</button>
         </div>
 
         <!-- AI TOGGLE BANNER -->
@@ -119,14 +112,14 @@
           <div class="ai-toggle-left">
             <div class="ai-toggle-icon">🤖</div>
             <div class="ai-toggle-info">
-              <h3>AI 自動投資功能</h3>
-              <p>控制一般用戶是否可在客戶端看到 AI 投資基金選項</p>
-              <span class="ai-toggle-status off" id="toggle-status-text">目前關閉 — 客戶端不顯示</span>
+              <h3 data-i18n="admin_ai_toggle_title">AI 自動投資功能</h3>
+              <p data-i18n="admin_ai_toggle_desc">控制一般用戶是否可在客戶端看到 AI 投資基金選項</p>
+              <span class="ai-toggle-status off" id="toggle-status-text" data-i18n="admin_toggle_off_text">目前關閉 — 客戶端不顯示</span>
             </div>
           </div>
           <div class="ai-toggle-right">
             <div class="toggle-wrap">
-              <span class="toggle-label" id="toggle-label">已關閉</span>
+              <span class="toggle-label" id="toggle-label" data-i18n="admin_toggle_label_off">已關閉</span>
               <label class="toggle-switch">
                 <input type="checkbox" id="ai-toggle-checkbox">
                 <span class="toggle-slider"></span>
@@ -138,24 +131,24 @@
         <!-- KPI CARDS -->
         <div class="kpi-grid">
           <div class="kpi-card">
-            <div><span class="kpi-label">總 AUM</span><span class="kpi-icon">💰</span></div>
+            <div><span class="kpi-label" data-i18n="kpi_aum">總 AUM</span><span class="kpi-icon">💰</span></div>
             <div class="kpi-val" id="kpi-aum">$908,500</div>
-            <div class="kpi-change up">↑ +12.4% 本月</div>
+            <div class="kpi-change up" data-i18n="kpi_aum_change">↑ +12.4% 本月</div>
           </div>
           <div class="kpi-card">
-            <div><span class="kpi-label">總投資者</span><span class="kpi-icon">👥</span></div>
+            <div><span class="kpi-label" data-i18n="kpi_investors">總投資者</span><span class="kpi-icon">👥</span></div>
             <div class="kpi-val" id="kpi-investors">149</div>
-            <div class="kpi-change up">↑ +8 本月新增</div>
+            <div class="kpi-change up" data-i18n="kpi_investors_change">↑ +8 本月新增</div>
           </div>
           <div class="kpi-card">
-            <div><span class="kpi-label">VIP 客戶</span><span class="kpi-icon">👑</span></div>
+            <div><span class="kpi-label" data-i18n="kpi_vip">VIP 客戶</span><span class="kpi-icon">👑</span></div>
             <div class="kpi-val" id="kpi-vip">0</div>
-            <div class="kpi-change" style="color:var(--text-3)">— 客製基金</div>
+            <div class="kpi-change" style="color:var(--text-3)" data-i18n="kpi_vip_desc">— 客製基金</div>
           </div>
           <div class="kpi-card">
-            <div><span class="kpi-label">本月收益</span><span class="kpi-icon">📈</span></div>
+            <div><span class="kpi-label" data-i18n="kpi_revenue">本月收益</span><span class="kpi-icon">📈</span></div>
             <div class="kpi-val">$47,230</div>
-            <div class="kpi-change up">↑ +18.7% 月增</div>
+            <div class="kpi-change up" data-i18n="kpi_revenue_change">↑ +18.7% 月增</div>
           </div>
         </div>
 
@@ -163,22 +156,22 @@
         <div class="table-card">
           <div class="table-card-header">
             <div>
-              <div class="table-card-title">公開基金狀態</div>
-              <div class="table-card-sub">三個公開基金即時概覽</div>
+              <div class="table-card-title" data-i18n="admin_public_funds_title">公開基金狀態</div>
+              <div class="table-card-sub" data-i18n="admin_public_funds_sub">三個公開基金即時概覽</div>
             </div>
-            <a class="btn-primary" href="#" onclick="document.querySelector('[data-page=funds]').click();return false" style="font-size:12px;padding:7px 14px">查看全部</a>
+            <a class="btn-primary" href="#" onclick="document.querySelector('[data-page=funds]').click();return false" style="font-size:12px;padding:7px 14px" data-i18n="admin_view_all">查看全部</a>
           </div>
           <div class="table-wrap">
             <table id="overview-fund-table">
               <thead>
                 <tr>
-                  <th>基金名稱</th>
-                  <th>風險</th>
-                  <th>年化報酬</th>
-                  <th>AUM</th>
-                  <th>募資進度</th>
-                  <th>投資者</th>
-                  <th>狀態</th>
+                  <th data-i18n="th_admin_fund">基金名稱</th>
+                  <th data-i18n="th_admin_risk">風險</th>
+                  <th data-i18n="th_admin_annual">年化報酬</th>
+                  <th data-i18n="th_admin_aum">AUM</th>
+                  <th data-i18n="th_admin_progress">募資進度</th>
+                  <th data-i18n="th_admin_investors">投資者</th>
+                  <th data-i18n="th_admin_status">狀態</th>
                 </tr>
               </thead>
               <tbody id="overview-fund-tbody"></tbody>
@@ -187,38 +180,36 @@
         </div>
       </div>
 
-      <!-- ==================
-           PAGE: FUND MANAGEMENT
-           ================== -->
+      <!-- PAGE: FUND MANAGEMENT -->
       <div class="page" id="page-funds">
         <div class="page-header">
           <div>
-            <div class="page-title">基金管理</div>
-            <div class="page-sub">管理所有公開基金與 VIP 客製基金</div>
+            <div class="page-title" data-i18n="admin_page_funds">基金管理</div>
+            <div class="page-sub" data-i18n="admin_page_funds_sub">管理所有公開基金與 VIP 客製基金</div>
           </div>
         </div>
 
         <div class="table-card">
           <div class="table-card-header">
             <div>
-              <div class="table-card-title">所有基金</div>
-              <div class="table-card-sub">公開基金 + VIP 客製基金</div>
+              <div class="table-card-title" data-i18n="admin_all_funds_title">所有基金</div>
+              <div class="table-card-sub" data-i18n="admin_all_funds_sub">公開基金 + VIP 客製基金</div>
             </div>
           </div>
           <div class="table-wrap">
             <table id="all-funds-table">
               <thead>
                 <tr>
-                  <th>基金名稱</th>
-                  <th>類型</th>
-                  <th>風險</th>
-                  <th>年化率</th>
-                  <th>當前 AUM</th>
-                  <th>上限</th>
-                  <th>進度</th>
-                  <th>投資者</th>
-                  <th>狀態</th>
-                  <th>操作</th>
+                  <th data-i18n="th_admin_fund">基金名稱</th>
+                  <th data-i18n="th_admin_type">類型</th>
+                  <th data-i18n="th_admin_risk">風險</th>
+                  <th data-i18n="th_admin_annual">年化率</th>
+                  <th data-i18n="th_admin_current_aum">當前 AUM</th>
+                  <th data-i18n="th_admin_cap">上限</th>
+                  <th data-i18n="th_admin_prog">進度</th>
+                  <th data-i18n="th_admin_investors">投資者</th>
+                  <th data-i18n="th_admin_status">狀態</th>
+                  <th data-i18n="th_admin_action">操作</th>
                 </tr>
               </thead>
               <tbody id="all-funds-tbody"></tbody>
@@ -227,80 +218,74 @@
         </div>
       </div>
 
-      <!-- ==================
-           PAGE: VIP CLIENTS
-           ================== -->
+      <!-- PAGE: VIP CLIENTS -->
       <div class="page" id="page-vip">
         <div class="page-header">
           <div>
-            <div class="page-title">VIP 客戶管理</div>
-            <div class="page-sub">為 VIP 客戶建立專屬基金與獨立連結</div>
+            <div class="page-title" data-i18n="admin_page_vip">VIP 客戶管理</div>
+            <div class="page-sub" data-i18n="admin_page_vip_sub">為 VIP 客戶建立專屬基金與獨立連結</div>
           </div>
-          <button class="btn-primary" id="create-vip-btn">👑 建立 VIP 專屬基金</button>
+          <button class="btn-primary" id="create-vip-btn" data-i18n="admin_create_vip">👑 建立 VIP 專屬基金</button>
         </div>
 
         <div id="vip-empty" style="text-align:center;padding:60px 0;color:var(--text-3)">
           <div style="font-size:48px;margin-bottom:12px">👑</div>
-          <div style="font-size:16px;font-weight:700;color:var(--text-2);margin-bottom:6px">尚無 VIP 客戶</div>
-          <div style="font-size:13px">點擊「建立 VIP 專屬基金」開始新增</div>
+          <div style="font-size:16px;font-weight:700;color:var(--text-2);margin-bottom:6px" data-i18n="admin_no_vip">尚無 VIP 客戶</div>
+          <div style="font-size:13px" data-i18n="admin_no_vip_hint">點擊「建立 VIP 專屬基金」開始新增</div>
         </div>
 
         <div class="vip-cards" id="vip-cards-container"></div>
       </div>
 
-      <!-- ==================
-           PAGE: INVESTORS
-           ================== -->
+      <!-- PAGE: INVESTORS -->
       <div class="page" id="page-investors">
         <div class="page-header">
           <div>
-            <div class="page-title">投資者列表</div>
-            <div class="page-sub">所有一般用戶投資紀錄</div>
+            <div class="page-title" data-i18n="admin_page_investors">投資者列表</div>
+            <div class="page-sub" data-i18n="admin_page_investors_sub">所有一般用戶投資紀錄</div>
           </div>
         </div>
         <div class="table-card">
           <div class="table-card-header">
-            <div class="table-card-title">一般投資者</div>
+            <div class="table-card-title" data-i18n="admin_investors_title">一般投資者</div>
           </div>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>投資者</th>
-                  <th>加入基金</th>
-                  <th>投入金額</th>
-                  <th>當前價值</th>
+                  <th data-i18n="th_investor">投資者</th>
+                  <th data-i18n="th_fund_joined">加入基金</th>
+                  <th data-i18n="th_invested">投入金額</th>
+                  <th data-i18n="th_current_val">當前價值</th>
                   <th>P&L</th>
-                  <th>加入日期</th>
-                  <th>狀態</th>
+                  <th data-i18n="th_date">加入日期</th>
+                  <th data-i18n="th_admin_status">狀態</th>
                 </tr>
               </thead>
               <tbody id="investors-tbody">
-                <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#e8edf7;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text-2)">W</div><div><div style="font-weight:600;color:var(--text)">Wang **** 8823</div><div style="font-size:11px;color:var(--text-3)">wang@email.com</div></div></div></td><td><span class="risk-badge high">Alpha</span></td><td><span class="num">$10,000</span></td><td><span class="num">$11,420</span></td><td><span class="num green">+$1,420</span></td><td>2024-02-15</td><td><span class="status-badge active">持有中</span></td></tr>
-                <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#e8edf7;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text-2)">L</div><div><div style="font-weight:600;color:var(--text)">Lin **** 4471</div><div style="font-size:11px;color:var(--text-3)">lin@email.com</div></div></div></td><td><span class="risk-badge low">Stable</span></td><td><span class="num">$5,000</span></td><td><span class="num">$5,280</span></td><td><span class="num green">+$280</span></td><td>2024-03-01</td><td><span class="status-badge active">持有中</span></td></tr>
-                <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#e8edf7;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text-2)">C</div><div><div style="font-weight:600;color:var(--text)">Chen **** 9930</div><div style="font-size:11px;color:var(--text-3)">chen@email.com</div></div></div></td><td><span class="risk-badge medium">Beta</span></td><td><span class="num">$3,000</span></td><td><span class="num">$3,412</span></td><td><span class="num green">+$412</span></td><td>2024-03-10</td><td><span class="status-badge active">持有中</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#e8edf7;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text-2)">W</div><div><div style="font-weight:600;color:var(--text)">Wang **** 8823</div><div style="font-size:11px;color:var(--text-3)">wang@email.com</div></div></div></td><td><span class="risk-badge high">Alpha</span></td><td><span class="num">$10,000</span></td><td><span class="num">$11,420</span></td><td><span class="num green">+$1,420</span></td><td>2024-02-15</td><td><span class="status-badge active" data-i18n="status_active">持有中</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#e8edf7;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text-2)">L</div><div><div style="font-weight:600;color:var(--text)">Lin **** 4471</div><div style="font-size:11px;color:var(--text-3)">lin@email.com</div></div></div></td><td><span class="risk-badge low">Stable</span></td><td><span class="num">$5,000</span></td><td><span class="num">$5,280</span></td><td><span class="num green">+$280</span></td><td>2024-03-01</td><td><span class="status-badge active" data-i18n="status_active">持有中</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#e8edf7;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text-2)">C</div><div><div style="font-weight:600;color:var(--text)">Chen **** 9930</div><div style="font-size:11px;color:var(--text-3)">chen@email.com</div></div></div></td><td><span class="risk-badge medium">Beta</span></td><td><span class="num">$3,000</span></td><td><span class="num">$3,412</span></td><td><span class="num green">+$412</span></td><td>2024-03-10</td><td><span class="status-badge active" data-i18n="status_active">持有中</span></td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- ==================
-           PAGE: SETTINGS
-           ================== -->
+      <!-- PAGE: SETTINGS -->
       <div class="page" id="page-settings">
         <div class="page-header">
-          <div class="page-title">系統設定</div>
+          <div class="page-title" data-i18n="admin_page_settings">系統設定</div>
         </div>
 
         <div class="settings-section">
-          <div class="settings-title">🤖 AI 投資功能控制</div>
-          <div class="settings-desc">控制客戶端 AI 投資功能的顯示與隱藏</div>
+          <div class="settings-title" data-i18n="admin_settings_ai_title">🤖 AI 投資功能控制</div>
+          <div class="settings-desc" data-i18n="admin_settings_ai_desc">控制客戶端 AI 投資功能的顯示與隱藏</div>
 
           <div class="settings-row">
             <div>
-              <div class="settings-row-label">AI 自動投資功能</div>
-              <div class="settings-row-sub">開啟後，一般用戶登入後可看到三個公開基金並申請投資</div>
+              <div class="settings-row-label" data-i18n="admin_setting_ai_label">AI 自動投資功能</div>
+              <div class="settings-row-sub" data-i18n="admin_setting_ai_sub">開啟後，一般用戶登入後可看到三個公開基金並申請投資</div>
             </div>
             <div class="toggle-wrap">
               <label class="toggle-switch">
@@ -312,38 +297,37 @@
 
           <div class="settings-row">
             <div>
-              <div class="settings-row-label">一般用戶最小投資單位</div>
-              <div class="settings-row-sub">目前設定：0.1K USDT = $100 USD</div>
+              <div class="settings-row-label" data-i18n="admin_setting_min_label">一般用戶最小投資單位</div>
+              <div class="settings-row-sub" data-i18n="admin_setting_min_sub">目前設定：0.1K USDT = $100 USD</div>
             </div>
-            <span style="font-size:13.5px;font-weight:700;color:var(--text)">0.1K / $100</span>
+            <span style="font-size:13.5px;font-weight:700;color:var(--text)" data-i18n="admin_setting_min_val">0.1K / $100</span>
           </div>
 
           <div class="settings-row">
             <div>
-              <div class="settings-row-label">交易所</div>
-              <div class="settings-row-sub">資金運作目標交易所</div>
+              <div class="settings-row-label" data-i18n="admin_setting_exchange_label">交易所</div>
+              <div class="settings-row-sub" data-i18n="admin_setting_exchange_sub">資金運作目標交易所</div>
             </div>
-            <span style="font-size:13.5px;font-weight:700;color:var(--text)">幣安 Binance</span>
+            <span style="font-size:13.5px;font-weight:700;color:var(--text)" data-i18n="admin_setting_exchange_val">幣安 Binance</span>
           </div>
 
           <div class="settings-row">
             <div>
-              <div class="settings-row-label">交易對</div>
-              <div class="settings-row-sub">目前只針對 ETH/USDT 做合約交易</div>
+              <div class="settings-row-label" data-i18n="admin_setting_pair_label">交易對</div>
+              <div class="settings-row-sub" data-i18n="admin_setting_pair_sub">目前只針對 ETH/USDT 做合約交易</div>
             </div>
-            <span style="font-size:13.5px;font-weight:700;color:var(--text)">ETH/USDT 永續合約</span>
+            <span style="font-size:13.5px;font-weight:700;color:var(--text)" data-i18n="admin_setting_pair_val">ETH/USDT 永續合約</span>
           </div>
         </div>
 
-        <!-- Disabled sections -->
         <div class="settings-section" style="opacity:0.4;pointer-events:none;position:relative">
-          <div class="settings-title">📧 通知設定 <span style="font-size:10.5px;background:var(--border);color:var(--text-3);padding:2px 8px;border-radius:50px;margin-left:6px">即將推出</span></div>
-          <div class="settings-desc">Email / Telegram 通知設定（功能開發中）</div>
+          <div class="settings-title"><span data-i18n="admin_notify_title">📧 通知設定</span> <span style="font-size:10.5px;background:var(--border);color:var(--text-3);padding:2px 8px;border-radius:50px;margin-left:6px" data-i18n="coming_soon">即將推出</span></div>
+          <div class="settings-desc" data-i18n="admin_notify_desc">Email / Telegram 通知設定（功能開發中）</div>
         </div>
 
         <div class="settings-section" style="opacity:0.4;pointer-events:none;position:relative">
-          <div class="settings-title">🔐 安全設定 <span style="font-size:10.5px;background:var(--border);color:var(--text-3);padding:2px 8px;border-radius:50px;margin-left:6px">即將推出</span></div>
-          <div class="settings-desc">2FA 雙重驗證、IP 白名單（功能開發中）</div>
+          <div class="settings-title"><span data-i18n="admin_security_title">🔐 安全設定</span> <span style="font-size:10.5px;background:var(--border);color:var(--text-3);padding:2px 8px;border-radius:50px;margin-left:6px" data-i18n="coming_soon">即將推出</span></div>
+          <div class="settings-desc" data-i18n="admin_security_desc">2FA 雙重驗證、IP 白名單（功能開發中）</div>
         </div>
       </div>
 
@@ -351,153 +335,146 @@
   </div>
 </div>
 
-<!-- ============================================
-     MODAL: CREATE VIP FUND
-     ============================================ -->
+<!-- MODAL: CREATE VIP FUND -->
 <div class="modal-overlay" id="modal-create-vip">
   <div class="modal" style="max-width:500px">
     <div class="modal-head">
-      <div class="modal-title">👑 建立 VIP 專屬基金</div>
+      <div class="modal-title" data-i18n="admin_modal_create_vip">👑 建立 VIP 專屬基金</div>
       <button class="modal-x" data-close="modal-create-vip">✕</button>
     </div>
     <div class="modal-body">
       <div class="form-row">
         <div class="form-field">
-          <label class="field-label">客戶姓名</label>
+          <label class="field-label" data-i18n="admin_vip_client_name_label">客戶姓名</label>
           <input type="text" class="field-input" id="vip-client-name" placeholder="例：Howard Zhang">
         </div>
         <div class="form-field">
-          <label class="field-label">基金名稱</label>
+          <label class="field-label" data-i18n="admin_vip_fund_name_label">基金名稱</label>
           <input type="text" class="field-input" id="vip-fund-name" placeholder="例：Howard 專享基金">
         </div>
       </div>
       <div class="form-row">
         <div class="form-field">
-          <label class="field-label">目標年化報酬率 (%)</label>
+          <label class="field-label" data-i18n="admin_vip_annual_label">目標年化報酬率 (%)</label>
           <input type="number" class="field-input" id="vip-annual-rate" placeholder="例：95" min="1" max="500">
         </div>
         <div class="form-field">
-          <label class="field-label">初始運用金額 (USDT)</label>
+          <label class="field-label" data-i18n="admin_vip_amount_label">初始運用金額 (USDT)</label>
           <input type="number" class="field-input" id="vip-amount" placeholder="例：50000" min="1000">
         </div>
       </div>
       <div class="form-row">
         <div class="form-field">
-          <label class="field-label">推薦人代碼</label>
+          <label class="field-label" data-i18n="admin_vip_referral_label">推薦人代碼</label>
           <input type="text" class="field-input" id="vip-referral" placeholder="例：HOWARD2024">
-          <div class="field-hint">若客戶尚未在 TRANSAI 註冊，此代碼將自動帶入申請連結</div>
+          <div class="field-hint" data-i18n="admin_vip_referral_hint">若客戶尚未在 TRANSAI 註冊，此代碼將自動帶入申請連結</div>
         </div>
         <div class="form-field">
-          <label class="field-label">風險等級</label>
+          <label class="field-label" data-i18n="admin_vip_risk_label">風險等級</label>
           <select class="field-input" id="vip-risk">
-            <option value="high">高風險</option>
-            <option value="medium" selected>中風險</option>
-            <option value="low">低風險</option>
+            <option value="high" data-i18n="admin_risk_high">高風險</option>
+            <option value="medium" selected data-i18n="admin_risk_medium">中風險</option>
+            <option value="low" data-i18n="admin_risk_low">低風險</option>
           </select>
         </div>
       </div>
       <div class="form-field">
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
           <input type="checkbox" id="vip-is-new-user" checked style="width:16px;height:16px;accent-color:var(--gold)">
-          <span style="font-size:13px;color:var(--text)">此客戶尚未在 TRANSAI 註冊（連結將包含推薦碼引導註冊）</span>
+          <span style="font-size:13px;color:var(--text)" data-i18n="admin_vip_new_user_label">此客戶尚未在 TRANSAI 註冊（連結將包含推薦碼引導註冊）</span>
         </label>
       </div>
-      <button class="btn-confirm" id="generate-vip-btn">✨ 生成專屬連結與 QR Code</button>
+      <button class="btn-confirm" id="generate-vip-btn" data-i18n="admin_generate_btn">✨ 生成專屬連結與 QR Code</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================
-     MODAL: VIP LINK & QR CODE
-     ============================================ -->
+<!-- MODAL: VIP LINK & QR CODE -->
 <div class="modal-overlay" id="modal-vip-link">
   <div class="modal" style="max-width:460px">
     <div class="modal-head">
-      <div class="modal-title">🎉 VIP 專屬連結已生成</div>
+      <div class="modal-title" data-i18n="admin_vip_link_modal">🎉 VIP 專屬連結已生成</div>
       <button class="modal-x" data-close="modal-vip-link">✕</button>
     </div>
     <div class="modal-body">
       <div style="background:var(--gold-light);border:1px solid rgba(240,180,41,0.3);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px">
-        <div style="font-size:12px;font-weight:700;color:#c47f00;margin-bottom:4px">VIP 客戶</div>
+        <div style="font-size:12px;font-weight:700;color:#c47f00;margin-bottom:4px" data-i18n="admin_vip_label">VIP 客戶</div>
         <div style="font-size:16px;font-weight:700;color:var(--text)" id="vip-modal-client-name">—</div>
         <div style="font-size:12px;color:var(--text-2);margin-top:2px" id="vip-modal-fund-info">—</div>
       </div>
 
-      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:6px">專屬連結</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:6px" data-i18n="admin_exclusive_link">專屬連結</div>
       <div class="vip-link-box">
         <span class="vip-link-url" id="vip-modal-link">—</span>
-        <button class="copy-btn" id="copy-link-btn">複製</button>
+        <button class="copy-btn" id="copy-link-btn" data-i18n="admin_copy_btn">複製</button>
       </div>
 
-      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:8px">QR Code</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:8px" data-i18n="admin_qr_label">QR Code</div>
       <div class="qr-wrap">
         <img id="vip-qr-img" src="" alt="QR Code" style="width:160px;height:160px;border-radius:8px">
-        <div class="qr-label">客戶掃描後即可進入專屬投資頁面</div>
+        <div class="qr-label" data-i18n="admin_qr_hint">客戶掃描後即可進入專屬投資頁面</div>
       </div>
 
-      <button class="btn-confirm" data-close="modal-vip-link" style="background:var(--navy);color:#fff">完成</button>
+      <button class="btn-confirm" data-close="modal-vip-link" style="background:var(--navy);color:#fff" data-i18n="admin_done_btn">完成</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================
-     MODAL: ADJUST VIP AMOUNT
-     ============================================ -->
+<!-- MODAL: ADJUST VIP AMOUNT -->
 <div class="modal-overlay" id="modal-adjust">
   <div class="modal" style="max-width:380px">
     <div class="modal-head">
-      <div class="modal-title">調整運用金額</div>
+      <div class="modal-title" data-i18n="admin_adjust_modal">調整運用金額</div>
       <button class="modal-x" data-close="modal-adjust">✕</button>
     </div>
     <div class="modal-body">
       <div style="margin-bottom:14px">
-        <div style="font-size:12px;color:var(--text-3)">客戶</div>
+        <div style="font-size:12px;color:var(--text-3)" data-i18n="admin_adjust_client">客戶</div>
         <div style="font-size:15px;font-weight:700;color:var(--text)" id="adjust-client-name">—</div>
       </div>
       <div class="form-field">
-        <label class="field-label">當前運用金額 (USDT)</label>
+        <label class="field-label" data-i18n="admin_adjust_current_label">當前運用金額 (USDT)</label>
         <input type="text" class="field-input readonly" id="adjust-current" readonly>
       </div>
       <div class="form-field">
-        <label class="field-label">增減金額 (USDT) — 輸入負數表示減少</label>
+        <label class="field-label" data-i18n="admin_adjust_delta_label">增減金額 (USDT) — 輸入負數表示減少</label>
         <div class="adjust-row">
           <button class="adjust-btn minus" id="adjust-minus">−</button>
           <input type="number" class="adjust-input" id="adjust-delta" placeholder="0" step="1000">
           <button class="adjust-btn" id="adjust-plus">+</button>
         </div>
-        <div class="field-hint">正數增加，負數減少。調整後新金額：<strong id="adjust-new">—</strong></div>
+        <div class="field-hint"><span data-i18n="admin_adjust_hint">正數增加，負數減少。調整後新金額：</span><strong id="adjust-new">—</strong></div>
       </div>
-      <button class="btn-confirm" id="adjust-confirm-btn">確認調整</button>
+      <button class="btn-confirm" id="adjust-confirm-btn" data-i18n="admin_adjust_confirm_btn">確認調整</button>
     </div>
   </div>
 </div>
 
-<!-- ============================================
-     MODAL: VIEW VIP LINK (existing fund)
-     ============================================ -->
+<!-- MODAL: VIEW VIP LINK -->
 <div class="modal-overlay" id="modal-view-link">
   <div class="modal" style="max-width:440px">
     <div class="modal-head">
-      <div class="modal-title">VIP 專屬連結</div>
+      <div class="modal-title" data-i18n="admin_view_link_modal">VIP 專屬連結</div>
       <button class="modal-x" data-close="modal-view-link">✕</button>
     </div>
     <div class="modal-body">
-      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:6px">專屬連結</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:6px" data-i18n="admin_exclusive_link">專屬連結</div>
       <div class="vip-link-box">
         <span class="vip-link-url" id="view-modal-link">—</span>
-        <button class="copy-btn" id="copy-view-link-btn">複製</button>
+        <button class="copy-btn" id="copy-view-link-btn" data-i18n="admin_copy_btn">複製</button>
       </div>
-      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:8px">QR Code</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:8px" data-i18n="admin_qr_label">QR Code</div>
       <div class="qr-wrap">
         <img id="view-qr-img" src="" alt="QR Code" style="width:160px;height:160px;border-radius:8px">
-        <div class="qr-label">分享給 VIP 客戶使用</div>
+        <div class="qr-label" data-i18n="admin_share_qr_hint">分享給 VIP 客戶使用</div>
       </div>
-      <button class="btn-confirm" data-close="modal-view-link" style="background:var(--navy);color:#fff">關閉</button>
+      <button class="btn-confirm" data-close="modal-view-link" style="background:var(--navy);color:#fff" data-i18n="admin_close_btn">關閉</button>
     </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/admin.js"></script>
 </body>
 </html>
